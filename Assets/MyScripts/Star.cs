@@ -88,13 +88,6 @@ namespace MyScripts
                 blinkCoroutine = StartCoroutine(BlinkColors());    // inicia a Coroutine chamada BlinkColors (que é um IEnumerator)
             }
         }
-    
-        void OnReleased(SelectExitEventArgs args)
-        {
-            // parar de piscar quando soltar
-            StopBlinking();    // nesse método o som deve parar e a estrela deve voltar ao normal
-        }
-    
         IEnumerator BlinkColors() 
         // ativado no método OnGrabbed(), IEnumarator serve para iterar sobre coleções (como foreach) e pausar/retomar execução (corrotinas)
         {
@@ -112,6 +105,13 @@ namespace MyScripts
                 yield return new WaitForSeconds(colorChangeSpeed);   // colorChangeSpeed = 0.25f   ("pausa a cor" por esse tempo, e depois retoma com outra cor)
             }
         }
+    
+        void OnReleased(SelectExitEventArgs args)
+        {
+            // parar de piscar quando soltar
+            StopBlinking();    // nesse método o som deve parar e a estrela deve voltar ao normal
+        }
+    
     
         public void StopBlinking()    // ativado no método OnReleased()
         {
@@ -133,7 +133,7 @@ namespace MyScripts
             starMaterial.color = originalColor;
         }
     
-        void OnDestroy()
+        void OnDestroy()                            // método que serve como um "dispose" geral
         {
             // Limpa material
             if (starMaterial != null)
