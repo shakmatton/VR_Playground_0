@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
@@ -69,9 +70,23 @@ namespace MyScripts
             }
         }
 
-        private void OnSprintReleased(InputAction.CallbackContext obj)
+        private void Start()
         {
             m_MoveProvider.moveSpeed = m_WalkSpeed;
+            
+            m_simulator.translateXSpeed = m_WalkSpeed;
+            m_simulator.translateYSpeed = m_WalkSpeed;
+            m_simulator.translateZSpeed = m_WalkSpeed;
+        }
+
+        // Continuous Move Provider sofre override dos valores de SprintModifier quando tecla Ctrl é ativada 
+        
+        private void OnSprintReleased(InputAction.CallbackContext obj)
+        {
+            // não esquecer: m_MoveProvider (Óculos) / m_simulator (Simulador XR)
+            
+            m_MoveProvider.moveSpeed = m_WalkSpeed;         
+            
             m_simulator.translateXSpeed = m_WalkSpeed;
             m_simulator.translateYSpeed = m_WalkSpeed;
             m_simulator.translateZSpeed = m_WalkSpeed;
@@ -93,3 +108,94 @@ namespace MyScripts
         }
     }
 }
+
+/*
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
+
+namespace MyScripts
+{
+    public class SprintModifier : MonoBehaviour
+    {
+        [Header("Referências")] 
+        [SerializeField] private ContinuousMoveProvider m_MoveProvider;
+        
+        [Tooltip("Opcional: Usado para testar velocidade no teclado/simulador.")]
+        [SerializeField] private XRInteractionSimulator m_Simulator;
+
+        [Header("Configurações de Velocidade")] 
+        [SerializeField] private float m_WalkSpeed = 2.5f;
+        [SerializeField] private float m_SprintSpeed = 5f;
+
+        [Header("Input")] 
+        [SerializeField] private InputActionReference m_SprintInput;
+
+        void Awake()
+        {
+            // Tenta encontrar o Move Provider se não estiver atribuído
+            if (m_MoveProvider == null)
+                m_MoveProvider = GetComponent<ContinuousMoveProvider>();
+            
+            // Tenta encontrar o simulador se estiver no editor e não estiver atribuído
+            if (m_Simulator == null)
+                m_Simulator = Object.FindAnyObjectByType<XRInteractionSimulator>();
+        }
+
+        void OnEnable()
+        {
+            if (m_SprintInput != null && m_SprintInput.action != null)
+            {
+                m_SprintInput.action.Enable(); // ESSENCIAL
+                m_SprintInput.action.performed += OnSprintPressed;
+                m_SprintInput.action.canceled += OnSprintReleased;
+            }
+
+            if (m_MoveProvider == null)
+            {
+                Debug.LogError("Continuous Move Provider não encontrado!", this);
+                enabled = false;
+                return;
+            }
+
+            // Garante que começa na velocidade de caminhada
+            SetSpeed(m_WalkSpeed);
+        }
+
+        private void OnSprintPressed(InputAction.CallbackContext obj)
+        {
+            SetSpeed(m_SprintSpeed);
+        }
+
+        private void OnSprintReleased(InputAction.CallbackContext obj)
+        {
+            SetSpeed(m_WalkSpeed);
+        }
+
+        private void SetSpeed(float speed)
+        {
+            if (m_MoveProvider != null)
+                m_MoveProvider.moveSpeed = speed;
+
+            // Aplica ao simulador (Device Simulator) se ele existir na cena
+            if (m_Simulator != null)
+            {
+                m_Simulator.translateXSpeed = speed;                
+                m_Simulator.translateYSpeed = speed;
+                m_Simulator.translateZSpeed = speed;
+            }
+        }
+
+        void OnDisable()
+        {
+            if (m_SprintInput != null && m_SprintInput.action != null)
+            {
+                m_SprintInput.action.performed -= OnSprintPressed;
+                m_SprintInput.action.canceled -= OnSprintReleased;
+                m_SprintInput.action.Disable();
+            }
+        }
+    }
+}
+*/

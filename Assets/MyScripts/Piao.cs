@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -11,12 +12,10 @@ public class Piao : MonoBehaviour
     
     private PiaoNumbers piaoNumbers; // <-- referência à instância
 
-    void Start()
+
+    private void Awake()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
-        grabInteractable.selectEntered.AddListener(OnGrabbed);
-        grabInteractable.selectExited.AddListener(OnReleased);
-
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -31,6 +30,18 @@ public class Piao : MonoBehaviour
         // Debug.Log: mostra mensagens informativas em cinza no Console.
         // Debug.LogWarning: destaca avisos em amarelo para possíveis problemas.
         // Debug.LogError: exibe erros em vermelho, indicando falhas críticas que precisam ser corrigidas.
+    }
+
+    private void OnEnable()
+    {
+        grabInteractable.selectEntered.AddListener(OnGrabbed);
+        grabInteractable.selectExited.AddListener(OnReleased);
+    }
+
+    private void OnDisable()
+    {
+        grabInteractable.selectEntered.RemoveListener(OnGrabbed);
+        grabInteractable.selectExited.RemoveListener(OnReleased);
     }
 
     void OnGrabbed(SelectEnterEventArgs args)
@@ -49,12 +60,6 @@ public class Piao : MonoBehaviour
 
         if (piaoNumbers != null)
             piaoNumbers.StopSpinning(); // <-- instância, não classe
-    }
-
-    void OnDestroy()
-    {
-        grabInteractable.selectEntered.RemoveListener(OnGrabbed);
-        grabInteractable.selectExited.RemoveListener(OnReleased);
     }
 }
 

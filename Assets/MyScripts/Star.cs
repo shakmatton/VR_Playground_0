@@ -17,7 +17,7 @@ namespace MyScripts
         [SerializeField] private bool superStar = false;
         [SerializeField] private float colorChangeSpeed = 0.25f; // tempo em segundos entre cada mudança de cor
         
-        /* =========  AÚDIO ========= */
+        /* =========  ÁUDIO ========= */
         
         private AudioSource starSoundSource;                    // o dispositivo "alto-falante"
         [SerializeField] private AudioClip starSoundClip;       // "a música que toca no alto-falante" 
@@ -93,7 +93,7 @@ namespace MyScripts
         {
             int colorIndex = 0;
         
-            while (superStar)        // while (superStar == true)
+            while (true)        // while (superStar == true)
             {
                 // Muda para a próxima cor
                 starMaterial.color = starColorsArray[colorIndex];
