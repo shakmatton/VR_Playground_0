@@ -48,9 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MyScripts\TeleportationActivator.cs" />
+    <Compile Include="Assets\MyScripts\DarkChave.cs" />
+    <Compile Include="Assets\MyScripts\NewTestCube.cs" />
+    <Compile Include="Assets\MyScripts\NewTestCubeInherit.cs" />
     <Compile Include="Assets\MyScripts\Porta.cs" />
     <Compile Include="Assets\MyScripts\Gun.cs" />
     <Compile Include="Assets\MyScripts\Lamp1.cs" />
+    <Compile Include="Assets\MyScripts\LeverHandle.cs" />
     <Compile Include="Assets\MyScripts\Lamp2.cs" />
     <Compile Include="Assets\MyScripts\CustomCube.cs" />
     <Compile Include="Assets\MyScripts\PiaoNumbers.cs" />
