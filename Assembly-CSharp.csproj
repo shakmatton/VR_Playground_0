@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/MyScripts/TeleportationActivator.cs" />
+    <Compile Include="Assets/MyScripts/Gaveta.cs" />
     <Compile Include="Assets/MyScripts/DarkChave.cs" />
     <Compile Include="Assets/MyScripts/NewTestCube.cs" />
     <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
