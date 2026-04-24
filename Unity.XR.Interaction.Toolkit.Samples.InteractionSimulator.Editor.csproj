@@ -895,11 +895,11 @@
     <Reference Include="Unity.XR.Interaction.Toolkit.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>

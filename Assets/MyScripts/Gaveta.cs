@@ -6,36 +6,138 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class Gaveta : XRSimpleInteractable    
 
-/*  NÃO CONFUNDIR!
- 
-   INTERACTABLES (XRSimpleInteractable, XRGrabInteractable, etc) com INTERACTORS (Direct, Near-Far, Teleport, Ray, Poke)
+/*  *****************************************************
+    *****             NÃO CONFUNDIR!                *****
+    *****************************************************
+  
+  
+   >>> INTERACTABLES (XRSimpleInteractable, XRGrabInteractable, etc) com INTERACTORS (Direct, Near-Far, Teleport, Ray, Poke)
    Gaveta é um Interactable (XRSimpleInteractable). Nosso controle é um interactor (aqui sendo usado com interface IXRSelectInteractor).
 
-   gaveta é um MonoBehaviour (XRSimpleInteractable > XRBaseInteractable > MonoBehaviour).
+
+   >>> gaveta é um MonoBehaviour (XRSimpleInteractable > XRBaseInteractable > MonoBehaviour).
    "drawer" (filho de "cabinet") é o nome do gameobject, que herda de Object.
 
-   Todos os gameObjects possuem por padrão um componente: o Transform.
+
+   >>> Todos os gameObjects possuem por padrão um componente: o Transform.
    Pode ser referenciado diretamente. Ex.: transform.position = parentTrans.position;
 
-   "O que são componentes? (Onde eles aparecem nos scripts)?". Veja exemplo abaixo: 
+
+   >>> "O que são componentes? (Onde eles aparecem nos scripts)?". Veja exemplo abaixo:
+
+                       public new IXRSelectInteractor interactorObject
+                             {
+                                 get => (IXRSelectInteractor)base.interactorObject;
+                                 set => base.interactorObject = value;
+                             }
+
+        "interactorObject" é um componente.
+        
    
-   public new IXRSelectInteractor interactorObject
-         {
-             get => (IXRSelectInteractor)base.interactorObject;
-             set => base.interactorObject = value;
-         }
+   >>> Vector3 é uma struct (podendo ser Posição, Rotação ou Scale).
    
-   "interactorObject" é um componente.         */
+   
+   >>> Scripting Movement: If moving via code, use transform.Translate(Vector3.forward * speed, Space.Self)
+   to move along the local Z-axis specifically, or use Transform.TransformDirection to convert local directions to world space.
+   
+   
+   *****************************************************
+   *****        Problema do Clamp da gaveta        *****
+   *****************************************************
+   
+
+    Problema do Clamp da gaveta - escolha uma solução:
+
+    Solução 1 com âncoras → Simplicidade e controle total sobre as posições.
+    Solução 1b com Lerp + SmoothStep → Animação suave com easing.
+    Solução 2 com Clamp [MAIS INDICADA] → Já tem o movimento funcionando e só precisa limitar.
+    Solução 3 → Resolver de vez o problema via Blender para futuros scripts.
+    
+    A solução 2 é a mais indicada porque não modifica o código anterior de trava de movimentação da gaveta em 1 eixo (eixo Z).
+    Para outros casos, pode-se usar as demais soluções.
+    
+    >>> Solução 1 — Âncoras com MoveTowards:
+
+    Cabinet
+   ├── PosFechada
+   ├── PosAberta
+   └── Gaveta  ← gaveta.cs está aqui
+
+   public Transform posFechada;
+   public Transform posAberta;
+   public float velocidade = 1f;
+
+   private bool abrindo = false;
+
+   void Update()
+   {
+       Transform alvo = abrindo ? posAberta : posFechada;
+       transform.position = Vector3.MoveTowards(transform.position, alvo.position, velocidade * Time.deltaTime);
+   }
+
+   >>> Solução 1b — Âncoras com Lerp
+
+   public Transform posFechada;
+   public Transform posAberta;
+   public float velocidade = 2f;
+
+   private float t = 0f;
+   private bool abrindo = false;
+
+   void Update()
+   {
+       if (abrindo)
+           t += Time.deltaTime * velocidade;
+       else
+           t -= Time.deltaTime * velocidade;
+
+       t = Mathf.Clamp01(t);
+
+       // Troque por Mathf.SmoothStep para movimento mais suave
+       float tSuave = Mathf.SmoothStep(0f, 1f, t);
+       transform.position = Vector3.Lerp(posFechada.position, posAberta.position, tSuave);
+   }
+
+   >>> Solução 2 — Clamp direto no localPosition
+   Arraste a gaveta manualmente no Editor e veja qual letra (X, Y ou Z) muda no Inspetor — use essa no Clamp.
+
+   public float minVal = 0f;   // valor local quando fechada
+   public float maxVal = 0.4f; // valor local quando aberta
+
+   void Update()
+   {
+       Vector3 localPos = transform.localPosition;
+
+       // Substitua .x pelo eixo que você identificou no Inspetor
+       localPos.x = Mathf.Clamp(localPos.x, minVal, maxVal);
+
+       transform.localPosition = localPos;
+   }
+
+   >>> Solução 3 — Corrigir a origem do Cabinet no modelo 3D
+   No Blender, corrija o pivot do Cabinet para que o Z aponte para frente antes de importar.
+   Isso elimina o problema na raiz e torna qualquer um dos scripts acima mais intuitivo de trabalhar.
+
+
+
+   *****************************************************
+   *****                  CÓDIGO                   *****
+   *****************************************************  */
+
 
 {
-    private float minDistance;
-    private float maxDistance;
-    private GameObject cabinet;         // pegar posição dele depois
-    private Vector3 pos;
-    // private bool isTouching;         // em C#, variáveis iniciam com false por default
-    private bool isTouching = false;    // ou pode-se fazer a atribuição explícita assim
     
-    [SerializeField] private Transform parentTrans;             // isso facilita pegar a posição do pai (apenas arraste a posição dele do Inspector para o campo)
+    private float initialDistance;  // transform.position.x inicial é = -0.034f
+    private float finalDistance;    // -0.425f
+    private bool isTouching = false;    // ou pode-se fazer a atribuição explícita assim
+
+    // private float gapDistance = 0.391f;
+    
+    // private GameObject cabinet;         // pegar posição dele depois
+    
+    // private bool isTouching;         // em C#, variáveis iniciam com false por default
+    // [SerializeField] private Transform parentTrans;             // isso facilita pegar a posição do pai (apenas arraste a posição dele do Inspector para o campo)
+    
     
     private IXRSelectInteractor interactor;         // interface: ver como funciona nos métodos protected OnSelectEntered e OnSelectExited.
                                                     /* 
@@ -44,15 +146,11 @@ public class Gaveta : XRSimpleInteractable
                                                           }
                                                      */
 
-                                                    
-    
-    // fazer o "clamp" da gaveta pra delimitar amplitude de movimento dela.... 
-    
-    
     
     private void Start()
     {
-            
+        initialDistance = transform.localPosition.x - 0.425f;     // posição da gaveta aberta
+        finalDistance = transform.localPosition.x;
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -87,20 +185,36 @@ public class Gaveta : XRSimpleInteractable
     void Update()
     {
         if (!isTouching) return; // "early return"
-        
-        // transform.position = new Vector3(transform.position.x, transform.position.y, interactor.transform.position.z) ;
 
-        Vector3 dir = interactor.transform.position - transform.position;   // lembrar de vector subtraction, destino - origem
+        //float a = initialDistance;
+        //float b = finalDistance;
 
-        float dist = Vector3.Dot(dir, transform.forward);           // "O quanto 2 vetores se aproximam" (valor: de -1 a 1)
-        
-        transform.position += transform.forward * dist;                     // Dist entre vetor do interactor e vetor do GameObject está entre [-1 e 1]
-                                                                            // Se dist tem valor 0, os vetores estão na perpendicular...
-                                                                            // ... e na perpendicular, transform.position é alterada...
-                                                                            // ... e fora da perpendicular, transform.position recebe valor positivo ou negativo no eixo Z (forward).
+        // Vector3 localPos = transform.localPosition;
+
+        //if (transform.localPosition.x >= a && transform.localPosition.x <= b)
+        //{
+            // transform.position = new Vector3(transform.position.x, transform.position.y, interactor.transform.position.z) ;     // transform.position (global) e transform.localPosition (local)
+
+            Vector3 dir = interactor.transform.position - transform.position;   // lembrar de vector subtraction, destino - origem
+
+            float dist = Vector3.Dot(dir, transform.forward);           // "O quanto 2 vetores se aproximam" (valor: de -1 a 1)
+            
+            transform.position += transform.forward * dist;                     // Dist entre vetor do interactor e vetor do GameObject está entre [-1 e 1]
+                                                                                // Se dist tem valor 0, os vetores estão na perpendicular...
+                                                                                // ... e na perpendicular, transform.position é alterada...
+                                                                                // ... e fora da perpendicular, transform.position recebe valor positivo ou negativo no eixo Z (forward).
+                                                                                
+          //  localPos.x = Mathf.Clamp(localPos.x, -gapDistance, gapDistance);
+          //  transform.localPosition = localPos;
+          
+          Vector3 localPos  = transform.localPosition;
+          localPos.x = Mathf.Clamp(localPos.x, initialDistance, finalDistance);
+          transform.localPosition = localPos;
+
+          //}
     }
 
-    private void OnDrawGizmos()   // método tem nativamente um update embutido
+    /*private void OnDrawGizmos()   // método tem nativamente um update embutido
     {
         if (!isTouching) return; // "early return" (boa prática de programação)
         
@@ -115,7 +229,7 @@ public class Gaveta : XRSimpleInteractable
         
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * 3);      // vetor forward (eixo Z) do gameobject
-    }
+    }*/
 }
 
 
@@ -315,8 +429,8 @@ public class Gaveta : XRSimpleInteractable
 // public class Gaveta : XRSimpleInteractable
 // {
 //     private Gaveta gaveta;
-//     private float minDistance = 0f;
-//     private float maxDistance = 0.4887f;
+//     private float initialDistance = 0f;
+//     private float finalDistance = 0.4887f;
 //     private bool isSelected = false;
 //     [SerializeField] private Vector3 pos;
 //     
@@ -325,8 +439,8 @@ public class Gaveta : XRSimpleInteractable
 //         gaveta = GetComponent<Gaveta>();
 //         
 //         // gaveta.GetParent.transform();
-//         // minDistance = cabinet.LocalTransform.position.z;                        // z = 0.7546955  (fechado)
-//         // maxDistance = minDistance + deltaDistance;                              // z = -0.266     (abertura máx.)
+//         // initialDistance = cabinet.LocalTransform.position.z;                        // z = 0.7546955  (fechado)
+//         // finalDistance = initialDistance + deltaDistance;                              // z = -0.266     (abertura máx.)
 //                                                                                    // deltaDistance = ~0,4887 (amplitude de movimento da gaveta)
 //     }
 //
