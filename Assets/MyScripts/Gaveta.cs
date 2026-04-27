@@ -4,12 +4,152 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+[Serializable] public enum Axis                 // Serve para automatizar o eixo a ser trabalhado, lá no método Update...
+{
+    X,
+    Y,
+    Z
+}
+
 public class Gaveta : XRSimpleInteractable    
+{
+    /*    
+     
+    *****************************************************
+    *****             NÃO CONFUNDIR!                *****         
+    *****************************************************
+    
+    VER SEÇÃO ABAIXO COM DICAS E EXPLICAÇÕES MAIS ABAIXO, AO FINAL DO SCRIPT
+     
+    */
+
+    private Vector3 initialPosition;  // transform.position.x inicial é = -0.034f
+    private bool isTouching = false;    // ou pode-se fazer a atribuição explícita assim
+
+    [SerializeField] private float maxDistance = -0.425f;           // valor máximo do limite estipulado até onde a gaveta pode ir
+    [SerializeField] private Axis axis;                             // eixo que pode ser escolhido (X, Y, Z)
+
+    private Vector3 interactionAxis;                                // definição de vetor de direções (X, Y, Z)
+
+    private IXRSelectInteractor interactor;         // interface: ver como funciona nos métodos protected OnSelectEntered e OnSelectExited.
+                                                    /*
+                                                        public class XRSimpleInteractable : XRBaseInteractable
+                                                          {
+                                                          }
+                                                     */
+    
+    private void Start()
+    {
+        initialPosition = transform.position;    // posição da gaveta aberta
+        switch (axis)                            // Aqui, a escolha do eixo é feita no início do modo Play 
+        {
+            case Axis.X:
+                interactionAxis = Vector3.right;    
+                break;
+            case Axis.Y:
+                interactionAxis = Vector3.up;
+                break;
+            case Axis.Z:
+                interactionAxis = Vector3.forward;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    protected override void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        base.OnSelectEntered(args);               // chama o método do pai 
+        interactor = args.interactorObject;       // interactor referencia o interactorObject recebido de args, no momento do contato com o objeto  
+        isTouching = true;
+        
+        /*
+        public class SelectEnterEventArgs : BaseInteractionEventArgs
+        {
+            /// <summary>
+            /// The Interactor associated with the interaction event.
+            /// </summary>
+            
+            public new IXRSelectInteractor interactorObject
+            {
+                get => (IXRSelectInteractor)base.interactorObject;
+                set => base.interactorObject = value;                     // Daqui vem a linha "interactor = args.interactorObject;"
+            }
+        */
+    }
+
+    protected override void OnSelectExited(SelectExitEventArgs args)
+    {
+        base.OnSelectExited(args);
+        interactor = null;                        // interactor referencia null ao sair do contato com o objeto 
+        isTouching = false;
+    }
+
+
+    void Update()
+    {
+        if (!isTouching) return; // "early return"
+
+            Vector3 dir = interactor.transform.position - initialPosition;   // lembrar de vector subtraction, destino - origem
+
+            float dist = Vector3.Dot(dir, interactionAxis);          // "O quanto 2 vetores se aproximam" (valor: de -1 a 1)
+                                                                             // (Mas isso somente se ambos estiverem normalizados! Aqui, só o dir não está normalizado)
+            
+            // Debug.Log(dist);   
+            
+            if (maxDistance >= 0)                                            // if "genérico": se distância for positiva, começar do zero e ir até maxDistance.
+            {
+                dist = Mathf.Clamp(dist, 0, maxDistance);
+            }
+            else                                                             // else: distância negativa, deve-se decrescer de maxDistance até dist 
+            {
+                dist = Mathf.Clamp(dist, maxDistance, 0);
+            }
+        
+            Vector3 calculatedPosition = initialPosition + (interactionAxis * dist);   // posição será a posição incial + distância do vetor dist no eixo determinado por interactionAxis                    
+            
+            
+            // Sobre distância entre vetores:
+            
+            // Dist entre vetor do interactor e vetor do GameObject está entre [-1 e 1], se todos estão normalizados.
+            // Se distância entre valores tem valor de 1, estão na mesma direção, e em sentidos iguais. 
+            // Se distância entre valores tem valor de 0, estão na perpendicular.
+            // Se distância entre valores tem valor de -1, estão na mesma direção, mas em sentidos opostos.
+            
+            
+            transform.position = calculatedPosition;   // por fim, posição da gaveta é atualizada com a posição que foi calculada (calculatedPosition).
+          
+    }
+
+    /*private void OnDrawGizmos()   // método tem nativamente um update embutido
+    {
+        if (!isTouching) return; // "early return" (boa prática de programação)
+        
+        // transform.position = new Vector3(transform.position.x, transform.position.y, interactor.transform.position.z) ;
+        // foi preciso criar o Vector3, pois não é possível fazer algo como:
+        // transform.position.z = interactor.transform.position.z;   (isso não funciona no Unity)
+
+        Vector3 dir = interactor.transform.position - transform.position;             // mesma linha lá no Update.  
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, dir * 3);                    // vetor resultante da subtração de destino pela origem
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * 3);      // vetor forward (eixo Z) do gameobject
+    }*/
+}
+
+
+
 
 /*  *****************************************************
     *****             NÃO CONFUNDIR!                *****
     *****************************************************
   
+  
+   >>> Em C#, variáveis iniciam com false por default. 
+       Exemplo:  private bool isTouching;  (inicia como false)
+                
   
    >>> INTERACTABLES (XRSimpleInteractable, XRGrabInteractable, etc) com INTERACTORS (Direct, Near-Far, Teleport, Ray, Poke)
    Gaveta é um Interactable (XRSimpleInteractable). Nosso controle é um interactor (aqui sendo usado com interface IXRSelectInteractor).
@@ -56,6 +196,8 @@ public class Gaveta : XRSimpleInteractable
     A solução 2 é a mais indicada porque não modifica o código anterior de trava de movimentação da gaveta em 1 eixo (eixo Z).
     Para outros casos, pode-se usar as demais soluções.
     
+    ----------------------------------------------------------------
+    
     >>> Solução 1 — Âncoras com MoveTowards:
 
     Cabinet
@@ -74,6 +216,8 @@ public class Gaveta : XRSimpleInteractable
        Transform alvo = abrindo ? posAberta : posFechada;
        transform.position = Vector3.MoveTowards(transform.position, alvo.position, velocidade * Time.deltaTime);
    }
+
+    ----------------------------------------------------------------
 
    >>> Solução 1b — Âncoras com Lerp
 
@@ -98,6 +242,8 @@ public class Gaveta : XRSimpleInteractable
        transform.position = Vector3.Lerp(posFechada.position, posAberta.position, tSuave);
    }
 
+    ----------------------------------------------------------------
+
    >>> Solução 2 — Clamp direto no localPosition
    Arraste a gaveta manualmente no Editor e veja qual letra (X, Y ou Z) muda no Inspetor — use essa no Clamp.
 
@@ -114,127 +260,19 @@ public class Gaveta : XRSimpleInteractable
        transform.localPosition = localPos;
    }
 
+    ----------------------------------------------------------------
+
    >>> Solução 3 — Corrigir a origem do Cabinet no modelo 3D
    No Blender, corrija o pivot do Cabinet para que o Z aponte para frente antes de importar.
    Isso elimina o problema na raiz e torna qualquer um dos scripts acima mais intuitivo de trabalhar.
 
-
+   ******************************************************************************************************************************
 
    *****************************************************
-   *****                  CÓDIGO                   *****
-   *****************************************************  */
+   *****              OUTROS CÓDIGOS               *****
+   *****************************************************  
 
-
-{
-    
-    private float initialDistance;  // transform.position.x inicial é = -0.034f
-    private float finalDistance;    // -0.425f
-    private bool isTouching = false;    // ou pode-se fazer a atribuição explícita assim
-
-    // private float gapDistance = 0.391f;
-    
-    // private GameObject cabinet;         // pegar posição dele depois
-    
-    // private bool isTouching;         // em C#, variáveis iniciam com false por default
-    // [SerializeField] private Transform parentTrans;             // isso facilita pegar a posição do pai (apenas arraste a posição dele do Inspector para o campo)
-    
-    
-    private IXRSelectInteractor interactor;         // interface: ver como funciona nos métodos protected OnSelectEntered e OnSelectExited.
-                                                    /* 
-                                                        public class XRSimpleInteractable : XRBaseInteractable
-                                                          {
-                                                          }
-                                                     */
-
-    
-    private void Start()
-    {
-        initialDistance = transform.localPosition.x - 0.425f;     // posição da gaveta aberta
-        finalDistance = transform.localPosition.x;
-    }
-
-    protected override void OnSelectEntered(SelectEnterEventArgs args)
-    {
-        base.OnSelectEntered(args);               // chama o método do pai 
-        interactor = args.interactorObject;       // interactor referencia o interactorObject recebido de args, no momento do contato com o objeto  
-        isTouching = true;
-        
-        /*
-        public class SelectEnterEventArgs : BaseInteractionEventArgs
-        {
-            /// <summary>
-            /// The Interactor associated with the interaction event.
-            /// </summary>
-            
-            public new IXRSelectInteractor interactorObject
-            {
-                get => (IXRSelectInteractor)base.interactorObject;
-                set => base.interactorObject = value;                     // Daqui vem a linha "interactor = args.interactorObject;"
-            }
-        */
-    }
-
-    protected override void OnSelectExited(SelectExitEventArgs args)
-    {
-        base.OnSelectExited(args);
-        interactor = null;                        // interactor referencia null ao sair do contato com o objeto 
-        isTouching = false;
-    }
-
-
-    void Update()
-    {
-        if (!isTouching) return; // "early return"
-
-        //float a = initialDistance;
-        //float b = finalDistance;
-
-        // Vector3 localPos = transform.localPosition;
-
-        //if (transform.localPosition.x >= a && transform.localPosition.x <= b)
-        //{
-            // transform.position = new Vector3(transform.position.x, transform.position.y, interactor.transform.position.z) ;     // transform.position (global) e transform.localPosition (local)
-
-            Vector3 dir = interactor.transform.position - transform.position;   // lembrar de vector subtraction, destino - origem
-
-            float dist = Vector3.Dot(dir, transform.forward);           // "O quanto 2 vetores se aproximam" (valor: de -1 a 1)
-            
-            transform.position += transform.forward * dist;                     // Dist entre vetor do interactor e vetor do GameObject está entre [-1 e 1]
-                                                                                // Se dist tem valor 0, os vetores estão na perpendicular...
-                                                                                // ... e na perpendicular, transform.position é alterada...
-                                                                                // ... e fora da perpendicular, transform.position recebe valor positivo ou negativo no eixo Z (forward).
-                                                                                
-          //  localPos.x = Mathf.Clamp(localPos.x, -gapDistance, gapDistance);
-          //  transform.localPosition = localPos;
-          
-          Vector3 localPos  = transform.localPosition;
-          localPos.x = Mathf.Clamp(localPos.x, initialDistance, finalDistance);
-          transform.localPosition = localPos;
-
-          //}
-    }
-
-    /*private void OnDrawGizmos()   // método tem nativamente um update embutido
-    {
-        if (!isTouching) return; // "early return" (boa prática de programação)
-        
-        // transform.position = new Vector3(transform.position.x, transform.position.y, interactor.transform.position.z) ;
-        // foi preciso criar o Vector3, pois não é possível fazer algo como:
-        // transform.position.z = interactor.transform.position.z;   (isso não funciona no Unity)
-
-        Vector3 dir = interactor.transform.position - transform.position;             // mesma linha lá no Update.  
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, dir * 3);                    // vetor resultante da subtração de destino pela origem
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 3);      // vetor forward (eixo Z) do gameobject
-    }*/
-}
-
-
-
-
+   ******************************************************************************************************************************    */
 
 /*
 
@@ -312,7 +350,7 @@ public class Gaveta : XRSimpleInteractable
 
 */
 
-
+// *****************************************************************************************************************************
 
 /*
 // Solução do Claude AI:
@@ -420,51 +458,3 @@ public class Gaveta : XRSimpleInteractable
 
 
 
-
-
-// using UnityEngine;
-// using UnityEngine.XR.Interaction.Toolkit;
-// using UnityEngine.XR.Interaction.Toolkit.Interactables;
-//
-// public class Gaveta : XRSimpleInteractable
-// {
-//     private Gaveta gaveta;
-//     private float initialDistance = 0f;
-//     private float finalDistance = 0.4887f;
-//     private bool isSelected = false;
-//     [SerializeField] private Vector3 pos;
-//     
-//     void Start()
-//     {
-//         gaveta = GetComponent<Gaveta>();
-//         
-//         // gaveta.GetParent.transform();
-//         // initialDistance = cabinet.LocalTransform.position.z;                        // z = 0.7546955  (fechado)
-//         // finalDistance = initialDistance + deltaDistance;                              // z = -0.266     (abertura máx.)
-//                                                                                    // deltaDistance = ~0,4887 (amplitude de movimento da gaveta)
-//     }
-//
-//     protected override void OnSelectEntered(SelectEnterEventArgs args)
-//     {
-//         base.OnSelectEntered(args);
-//         isSelected = true;
-//     }
-//
-//     protected override void OnSelectExited(SelectExitEventArgs args)
-//     {
-//         base.OnSelectExited(args);
-//         isSelected = false;
-//     }
-//     
-//     void Update()
-//     {
-//         if (isSelected)
-//         { 
-//             Debug.Log("Is Selected");
-//             pos = firstInteractorSelecting.GetAttachTransform(this).position;
-//             
-//         
-//          
-//         }
-//     }
-// }
