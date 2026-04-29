@@ -59,6 +59,7 @@
     <Compile Include="Assets/MyScripts/Lamp2.cs" />
     <Compile Include="Assets/MyScripts/CustomCube.cs" />
     <Compile Include="Assets/MyScripts/PiaoNumbers.cs" />
+    <Compile Include="Assets/MyScripts/Door.cs" />
     <Compile Include="Assets/MyScripts/Piao.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
