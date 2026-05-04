@@ -28,7 +28,6 @@ public class Oscillator : MonoBehaviour       // Oscillator só possui 1 comport
         enabled = true;                                                    // "enabled = true" reativa o script Oscillator 
     }
 
-
     protected virtual void Update()
     {
         if (timeElapsed < rotationDuration)                     // timeElapsed is the amount of small chunks of deltaTime... 
