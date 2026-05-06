@@ -10,95 +10,193 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 // (minha versão primeiro, depois a versão do ClaudeAI) 
 
 
-public class Door : XRSimpleInteractable            // a porta é um interactable 
+public class Door : XRSimpleInteractable               // a porta é um interactable 
 {
-    [SerializeField] private float maxRotation;     // ângulo máximo que a porta pode girar
-    [SerializeField] private float doorSpeed;
-
-    private List<int> _list = new List<int>();
-    
+    // private List<int> _list = new List<int>();      // exemplo de como criar uma lista de inteiros
     // private float currentRotation;
     // private float aux;
-    private bool toBePaused = true;
+    // private bool hasTouched = false;                // verifica se está ou não interagindo com algo
+    // private bool toBePaused = true;                 // flag de verificação de animação parada ou contínua
+    // [SerializeField] private float doorSpeed;          // velocidade da porta
+    // [SerializeField] private float maxRotation;        // ângulo máximo que a porta pode girar
     
-    private IXRSelectInteractor interactor;         // interactor é uma implementação da interface IXRSelectInteractor,
-                                                    // que herda da interface IXRInteractor.
+    
+    
+    
+    private IXRSelectInteractor interactor;                     // interactor é uma implementação da interface IXRSelectInteractor, que herda da interface IXRInteractor.
+    
+    [SerializeField] private float openAngle = -90f;            // ângulo da porta quando está aberta
+    [SerializeField] private float animationDuration = 0.8f;    // a duração da animação
 
-    private bool hasTouched = false;                // verifica se está ou não interagindo com algo
+    private float fromAngle = 0f;   // ângulo de partida
+    private float toAngle = 0f;     // ângulo de destino
 
+    private float timeElapsed = 0f;
+    
+    private bool isAnimating = false;   // flag de animação 
+    private bool isOpen = false;        // flag de status (porta aberta/fechada)
    
+    
     private void Start()
     {
         // rotações são negativas e ocorrem no eixo z (porta gira "se afastando") 
-        maxRotation = -90f;
-        doorSpeed = -50f;
+        // maxRotation = -90f;
+        // doorSpeed = -50f;
 
         // currentRotation = 0f;
         // aux = currentRotation;
     }
     
-    
-    
-    protected override void OnSelectEntered(SelectEnterEventArgs args)         // porta tocada
+    protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        base.OnSelectEntered(args);                                            // método herdado de XRBaseInteractable
-        interactor = args.interactorObject;                                    // interactor recebe o objeto "controle" que toca o interactable
-        
-        /* The line above extracts the Interactor (the object initiating an action, like a VR controller or ray) from the event data passed during an interaction.                     
-           It identifies which specific interactor triggered an event—such as a "Select," "Hover," or "Activate" event—on an interactable object.           
-           The interactorObject property is part of BaseInteractionEventArgs class, which is the base for more specific event types like SelectEnterEventArgs or HoverEnterEventArgs.
-               
-           Example: when a user grabs a virtual cube, the cube's OnSelectEntered event is fired. By using this line, a developer can determine
-           which hand (left or right) is holding the cube to trigger hand-specific logic, such as haptic feedback or changing a material.
-                      
-           The interactorObject usually returns an interface like IXRInteractor rather than a direct GameObject,
-           though the underlying GameObject can be accessed via interactorObject.transform.gameObject.                          */
-        toBePaused = !toBePaused;
-    }
+        base.OnSelectEntered(args);
 
-    /*protected override void OnSelectExited(SelectExitEventArgs args)           // porta largada
-    {
-        base.OnSelectExited(args);
-        interactor = null;                          // interactor é nulo no ato do "toque desativado"
-        hasTouched = false;
-    }*/
+        isOpen = !isOpen;                               // alterna status da porta
+        
+        fromAngle = transform.localEulerAngles.z;       // inicia do ângulo atual (considera também o toque no meio da animação)
+        
+        
+        /* Diferença entre usos de EULER e QUATERNION: "Euler é para humanos, Quaternion é para a matemática".
+
+           LEITURA: Unity te entrega o ângulo Z como float legível (Euler)
+           fromAngle = transform.localEulerAngles.z;   // ex: 270f
+
+           ESCRITA: Unity exige um Quaternion para setar rotação
+           Quaternion.Euler() converte seus ângulos legíveis de volta para Quaternion
+           transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+           
+           Quaternion.Euler(x, y, z), usado mais abaixo no código, é só um conversor. 
+           Você passa os ângulos que calculou, e ele devolve o Quaternion equivalente que o Unity entende.
+           
+           Nunca manipule os valores x y z w de um Quaternion diretamente — eles não têm significado intuitivo. 
+           Sempre use Quaternion.Euler() ou métodos como Quaternion.Slerp().            */
+        
+        
+        // localEulerAngles sempre retorna valores entre 0° e 360°. Nunca negativos.
+        // Então, quando a porta está em -90°, o Unity diz que ela está em 270°. São o mesmo ângulo físico, mas representados diferente.
+        
+        if (fromAngle > 180f)                           // corrige ângulos acima de 180 que o Unity retorna (ex: 270 em vez de -90)
+        {
+            fromAngle -= 360f;                          // ângulo passa a ter sinal invertido (o que evita o movimento da porta pelo sentido inverso) 
+        } 
+        
+        /* Explicação do trecho acima:
+        
+        O que aconteceria com o Lerp sem a correção é:
+        
+        fromAngle = 270f   (porta aberta, que fisicamente é -90°)
+        toAngle   = 0f     (porta fechada)
+         
+        Lerp(270, 0, t) → animaria: 270 → 240 → 180 → 90 → 0
+        
+        Logo, a porta giraria 270 graus no sentido errado, dando quase uma volta completa, em vez de fechar pelos 90° corretos.
+        
+        O trecho descomentado acima resolve o problema:
+        
+        fromAngle = -90f   (agora representado corretamente)
+        toAngle   = 0f
+         
+        Lerp(-90, 0, t) → animaria: -90 → -60 → -30 → 0  ✓
+        
+        */
+
+        toAngle = isOpen ? openAngle : 0f;              // ângulo de destino toAngle será -90 (openAngle) ou 0;
+        timeElapsed = 0f;                               // reset do timeElapsed
+        isAnimating = true;                             // flag de animação ativado
+    }
 
     private void Update()
     {
-        //if (!hasTouched) return;    // Update só executará quando houver o toque
-        
-        /* ideia: no futuro, o transform da porta deve acompanhar o transform do controle. Será preciso fazer a porta se mover via rotação em um eixo somente.
-           No momento, fazer apenas a porta girar ao tocar ela. */
-        
-        // Usar Lerp? Herdar Oscillator? Clamp?
-        if (!toBePaused)
-        {
-            transform.Rotate(0f, 0f, doorSpeed * Time.deltaTime, Space.Self);    // gira a porta no eixo Z
-        }
-        
+        if (!isAnimating) return;                       // não faz nada se não houver animação
 
-        /*
-        currentRotation = maxRotation;
-        
-        
-        if (currentRotation > maxRotation)
-        {
-            doorSpeed = !doorSpeed;
-            maxRotation = aux;
-            aux = currentRotation;
+        if (timeElapsed < animationDuration)            // se timeElapsed acumulado ainda é menos que a duração da animação... 
+        {                                               // ... usar LERP.
+            
+            float t = timeElapsed / animationDuration;
+            t = t * t * t * (t * (6f * t - 15f) + 10f);               // smootherstep (igual ao Oscillator)
+            
+            float angle = Mathf.Lerp(fromAngle, toAngle, t);               // angle recebe interpolação entre ângulos de origem e destino
+            
+            transform.localRotation = Quaternion.Euler(0f, 0f, angle);     // angle é usado para calcular rotação da porta
+                                                                           // em seguida, transform da porta recebe essa rotação calculada 
+            
+            timeElapsed += Time.deltaTime;                                 // timeElapsed é acumulado 
         }
-        
-        transform.Rotate(0f, 0f, doorSpeed * Time.deltaTime, Space.Self);    // gira a porta no eixo Z
-        
-        
-        /*
-        Quaternion rotation = transform.localRotation;   // variável armazena posição local da porta
-        rotation.z += doorSpeed * Time.deltaTime;         // gira a porta e atribui valor float da porta girada de volta à variável 
-        transform.localRotation = rotation;              // porta recebe rotação atualizada da variável
-        */
-        
+        else
+        {
+            // se timeElapsed acumulado ultrapassar a duração da animação...
+            transform.localRotation = Quaternion.Euler(0f, 0f, toAngle);  // garante que a porta trava exatamente no ângulo destino.  
+                                                                           
+            isAnimating = false;
+        }
     }
 }
+
+
+// ============================================================================================================================================
+// ============================================================================================================================================
+    
+    
+    // protected override void OnSelectEntered(SelectEnterEventArgs args)         // porta tocada
+    // {
+    //     base.OnSelectEntered(args);                                            // método herdado de XRBaseInteractable
+    //     interactor = args.interactorObject;                                    // interactor recebe o objeto "controle" que toca o interactable
+    //     
+    //     /* The line above extracts the Interactor (the object initiating an action, like a VR controller or ray) from the event data passed during an interaction.                     
+    //        It identifies which specific interactor triggered an event—such as a "Select," "Hover," or "Activate" event—on an interactable object.           
+    //        The interactorObject property is part of BaseInteractionEventArgs class, which is the base for more specific event types like SelectEnterEventArgs or HoverEnterEventArgs.
+    //            
+    //        Example: when a user grabs a virtual cube, the cube's OnSelectEntered event is fired. By using this line, a developer can determine
+    //        which hand (left or right) is holding the cube to trigger hand-specific logic, such as haptic feedback or changing a material.
+    //                   
+    //        The interactorObject usually returns an interface like IXRInteractor rather than a direct GameObject,
+    //        though the underlying GameObject can be accessed via interactorObject.transform.gameObject.                          */
+    //     toBePaused = !toBePaused;
+    // }
+    //
+    // /*protected override void OnSelectExited(SelectExitEventArgs args)           // porta largada
+    // {
+    //     base.OnSelectExited(args);
+    //     interactor = null;                          // interactor é nulo no ato do "toque desativado"
+    //     hasTouched = false;
+    // }*/
+    //
+    // private void Update()
+    // {
+    //     //if (!hasTouched) return;    // Update só executará quando houver o toque
+    //     
+    //     /* ideia: no futuro, o transform da porta deve acompanhar o transform do controle. Será preciso fazer a porta se mover via rotação em um eixo somente.
+    //        No momento, fazer apenas a porta girar ao tocar ela. */
+    //     
+    //     // Usar Lerp? Herdar Oscillator? Clamp?
+    //     if (!toBePaused)
+    //     {
+    //         transform.Rotate(0f, 0f, doorSpeed * Time.deltaTime, Space.Self);    // gira a porta no eixo Z
+    //     }
+    //     
+    //
+    //     /*
+    //     currentRotation = maxRotation;
+    //     
+    //     
+    //     if (currentRotation > maxRotation)
+    //     {
+    //         doorSpeed = !doorSpeed;
+    //         maxRotation = aux;
+    //         aux = currentRotation;
+    //     }
+    //     
+    //     transform.Rotate(0f, 0f, doorSpeed * Time.deltaTime, Space.Self);    // gira a porta no eixo Z
+    //     
+    //     
+    //     /*
+    //     Quaternion rotation = transform.localRotation;   // variável armazena posição local da porta
+    //     rotation.z += doorSpeed * Time.deltaTime;         // gira a porta e atribui valor float da porta girada de volta à variável 
+    //     transform.localRotation = rotation;              // porta recebe rotação atualizada da variável
+    //     */
+    //     
+    // }
+// }
 
 
 

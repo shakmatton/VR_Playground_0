@@ -20,10 +20,10 @@ public class Oscillator : MonoBehaviour       // Oscillator só possui 1 comport
         savedTransform = transform;         // "transform" é propriedade herdada de Component
     }
    
-    public void RestartOscillator(float angle)                             // método chamado a partir de "oscillator.RestartOscillator(clampedAngle);", em LeverInteractale.cs      
+    public void RestartOscillator(float angle)                             // Em LeverInteractale.cs: método é chamado a partir de "oscillator.RestartOscillator(clampedAngle);".       
     {
-        float t = Mathf.InverseLerp(startAngle, maxAngle, angle);          // método InverseLerp fará o Lerp com o último ângulo passado pelo clampedAngle (de LeverInteractable.cs)      
-        timeElapsed =  t * rotationDuration;                               // equação invertida (ver original em Update) para obter timeElapsed correto  
+        float t = Mathf.InverseLerp(startAngle, maxAngle, angle);          // método InverseLerp fará o Lerp com o último ângulo passado pelo clampedAngle (de LeverInteractable.cs)
+        timeElapsed =  t * rotationDuration;                               // equação invertida (ver original em Update) para obter timeElapsed correto
         // Debug.Log("first angle " + angle);
         enabled = true;                                                    // "enabled = true" reativa o script Oscillator 
     }
@@ -35,7 +35,7 @@ public class Oscillator : MonoBehaviour       // Oscillator só possui 1 comport
         {
             float t = timeElapsed / rotationDuration;
             t = t * t * t * (t * (6f * t - 15f) + 10f);                         // smoother step
-            float angle = Mathf.Lerp(startAngle, maxAngle, t);                  //  Lerp varia do ângulo inicial ao ângulo máximo, em t (que varia entre [0-1]).
+            float angle = Mathf.Lerp(startAngle, maxAngle, t);                  // Lerp varia do ângulo inicial ao ângulo máximo, em t (que varia entre [0-1]).
             savedTransform.localRotation = Quaternion.Euler(0, 0, angle);
             // Debug.Log(angle);
             timeElapsed += Time.deltaTime;

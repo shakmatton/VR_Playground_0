@@ -5652,7 +5652,6 @@ Transform:
   - {fileID: 1294065423}
   - {fileID: 1033184662369716391}
   - {fileID: 944361834}
-  - {fileID: 8416083453306464378}
   - {fileID: 2104296722}
   - {fileID: 161796042}
   - {fileID: 110307206}
@@ -5660,6 +5659,7 @@ Transform:
   - {fileID: 652114015}
   - {fileID: 6199973837585950677}
   - {fileID: 543450652190054298}
+  - {fileID: 8416083453306464378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &545879770
@@ -19541,8 +19541,8 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  maxRotation: 0
-  doorSpeed: 50
+  openAngle: -90
+  animationDuration: 0.8
 --- !u!4 &7174831282919743012
 Transform:
   m_ObjectHideFlags: 0
