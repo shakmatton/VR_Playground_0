@@ -10,31 +10,31 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 // (minha versão primeiro, depois a versão do ClaudeAI) 
 
 
-public class Door : XRSimpleInteractable               // a porta é um interactable 
+public class Door : XRSimpleInteractable                  // a porta é um interactable 
 {
-    // private List<int> _list = new List<int>();      // exemplo de como criar uma lista de inteiros
+    // private List<int> _list = new List<int>();         // exemplo de como criar uma lista de inteiros
     // private float currentRotation;
     // private float aux;
-    // private bool hasTouched = false;                // verifica se está ou não interagindo com algo
-    // private bool toBePaused = true;                 // flag de verificação de animação parada ou contínua
+    // private bool hasTouched = false;                   // verifica se está ou não interagindo com algo
+    // private bool toBePaused = true;                    // flag de verificação de animação parada ou contínua
     // [SerializeField] private float doorSpeed;          // velocidade da porta
     // [SerializeField] private float maxRotation;        // ângulo máximo que a porta pode girar
     
     
     
     
-    private IXRSelectInteractor interactor;                     // interactor é uma implementação da interface IXRSelectInteractor, que herda da interface IXRInteractor.
+    private IXRSelectInteractor interactor;                      // interactor é uma implementação da interface IXRSelectInteractor, que herda da interface IXRInteractor.
     
-    [SerializeField] private float openAngle = -90f;            // ângulo da porta quando está aberta
-    [SerializeField] private float animationDuration = 0.8f;    // a duração da animação
+    [SerializeField] private float finalAngle = -90f;            // ângulo da porta quando está aberta
+    [SerializeField] private float animationDuration = 0.8f;     // a duração da animação
 
-    private float fromAngle = 0f;   // ângulo de partida
-    private float toAngle = 0f;     // ângulo de destino
+    private float fromAngle = 0f;       // ângulo de partida
+    private float toAngle = 0f;         // ângulo de destino
 
-    private float timeElapsed = 0f;
+    private float timeElapsed = 0f;     // acumulador 
     
-    private bool isAnimating = false;   // flag de animação 
-    private bool isOpen = false;        // flag de status (porta aberta/fechada)
+    private bool isAnimating = false;   // flag de animação (porta está em movimento)
+    private bool isOpen = false;        // flag de status (porta está aberta/fechada)
    
     
     private void Start()
@@ -49,7 +49,7 @@ public class Door : XRSimpleInteractable               // a porta é um interact
     
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        base.OnSelectEntered(args);
+        base.OnSelectEntered(args);                     // do método de XRBaseInteractable.cs: "protected virtual void OnSelectEntered(SelectEnterEventArgs args)"
 
         isOpen = !isOpen;                               // alterna status da porta
         
@@ -91,7 +91,7 @@ public class Door : XRSimpleInteractable               // a porta é um interact
         
         Logo, a porta giraria 270 graus no sentido errado, dando quase uma volta completa, em vez de fechar pelos 90° corretos.
         
-        O trecho descomentado acima resolve o problema:
+        O trecho descomentado ali acima resolve o problema:
         
         fromAngle = -90f   (agora representado corretamente)
         toAngle   = 0f
@@ -100,8 +100,8 @@ public class Door : XRSimpleInteractable               // a porta é um interact
         
         */
 
-        toAngle = isOpen ? openAngle : 0f;              // ângulo de destino toAngle será -90 (openAngle) ou 0;
-        timeElapsed = 0f;                               // reset do timeElapsed
+        toAngle = isOpen ? finalAngle : 0f;             // ângulo de destino toAngle será (finalAngle atual) ou 0;
+        timeElapsed = 0f;                               // cada toque reseta o timeElapsed
         isAnimating = true;                             // flag de animação ativado
     }
 
@@ -109,13 +109,13 @@ public class Door : XRSimpleInteractable               // a porta é um interact
     {
         if (!isAnimating) return;                       // não faz nada se não houver animação
 
-        if (timeElapsed < animationDuration)            // se timeElapsed acumulado ainda é menos que a duração da animação... 
+        if (timeElapsed < animationDuration)            // se timeElapsed acumulado ainda é menor que a duração da animação... 
         {                                               // ... usar LERP.
             
-            float t = timeElapsed / animationDuration;
+            float t = timeElapsed / animationDuration;                // t é o passo calculado por aquela razão, que varia entre 0 e 1.   
             t = t * t * t * (t * (6f * t - 15f) + 10f);               // smootherstep (igual ao Oscillator)
             
-            float angle = Mathf.Lerp(fromAngle, toAngle, t);               // angle recebe interpolação entre ângulos de origem e destino
+            float angle = Mathf.Lerp(fromAngle, toAngle, t);               // angle recebe interpolação entre ângulos fromAngle (origem) e toAngle (destino = finalAngle ou 0)
             
             transform.localRotation = Quaternion.Euler(0f, 0f, angle);     // angle é usado para calcular rotação da porta
                                                                            // em seguida, transform da porta recebe essa rotação calculada 
@@ -125,7 +125,7 @@ public class Door : XRSimpleInteractable               // a porta é um interact
         else
         {
             // se timeElapsed acumulado ultrapassar a duração da animação...
-            transform.localRotation = Quaternion.Euler(0f, 0f, toAngle);  // garante que a porta trava exatamente no ângulo destino.  
+            transform.localRotation = Quaternion.Euler(0f, 0f, toAngle);  // garante que a porta trave exatamente no ângulo destino (toAngle = finalAngle).
                                                                            
             isAnimating = false;
         }
