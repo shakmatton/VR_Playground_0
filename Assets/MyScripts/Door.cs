@@ -6,6 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 
+// AVISO: SCRIPT FUNCIONANDO OK, MAS PODERIA SER MAIS GENÉRICO (CASO DA "PORTA TORTA" QUE MANTÉM ROTAÇÃO NOS PRÓPRIOS EIXOS).
+// ESTÁ UM TANTO HARDCODED (exemplo: estou configurando 0 em vez de um ângulo corrente, como nessa linha de código: toAngle = isOpen ? finalAngle : 0f;) 
+// OUTROS PONTO: PODERIA TER SIDO USADO COROUTINES TAMBÉM.
+
 // VER INSIGHT SOBRE COLLIDERS, CALLBACKS E FUNÇÕES LAMBDA NOS COMENTÁRIOS (ao final do script)
 // (minha versão primeiro, depois a versão do ClaudeAI) 
 
@@ -58,10 +62,10 @@ public class Door : XRSimpleInteractable                  // a porta é um inter
         
         /* Diferença entre usos de EULER e QUATERNION: "Euler é para humanos, Quaternion é para a matemática".
 
-           LEITURA: Unity te entrega o ângulo Z como float legível (Euler)
+           LEITURA: Unity te entrega o ângulo Z como float legível (Euler).
            fromAngle = transform.localEulerAngles.z;   // ex: 270f
 
-           ESCRITA: Unity exige um Quaternion para setar rotação
+           ESCRITA: Unity exige um Quaternion para setar rotação.
            Quaternion.Euler() converte seus ângulos legíveis de volta para Quaternion
            transform.localRotation = Quaternion.Euler(0f, 0f, angle);
            
@@ -117,15 +121,17 @@ public class Door : XRSimpleInteractable                  // a porta é um inter
             
             float angle = Mathf.Lerp(fromAngle, toAngle, t);               // angle recebe interpolação entre ângulos fromAngle (origem) e toAngle (destino = finalAngle ou 0)
             
-            transform.localRotation = Quaternion.Euler(0f, 0f, angle);     // angle é usado para calcular rotação da porta
+            transform.localRotation = Quaternion.Euler(transform.localRotation.x, transform.localRotation.y, angle);     // angle é usado para calcular rotação da porta
                                                                            // em seguida, transform da porta recebe essa rotação calculada 
             
             timeElapsed += Time.deltaTime;                                 // timeElapsed é acumulado 
+            
         }
         else
         {
             // se timeElapsed acumulado ultrapassar a duração da animação...
-            transform.localRotation = Quaternion.Euler(0f, 0f, toAngle);  // garante que a porta trave exatamente no ângulo destino (toAngle = finalAngle).
+            transform.localRotation = Quaternion.Euler(transform.localRotation.x, transform.localRotation.y, toAngle);  // garante que a porta trave exatamente no ângulo destino (toAngle).
+                                                                          // to Angle = finalAngle (se isOpen) ou 0 (se !isOpen).
                                                                            
             isAnimating = false;
         }
