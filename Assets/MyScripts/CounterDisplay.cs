@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-// CounterDisplay must catch Counter event. 
+// CounterDisplay must catch/subscribe into the triggered Counter event. 
 
 public class CounterDisplay : MonoBehaviour
 {
     [SerializeField] private Counter counter;                   // referência ao Counter.cs (precisa ser arrastado via Inspector)
+                                                                // [SerializeField] é a conexão entre o BigButton e o Counter
+    
     private TextMeshProUGUI textMeshProUGUI;                    // Display de pontuação
  
     void Start()      // Start, Awake, Update, OnEnable etc, são métodos do MonoBehaviour lifecycle de Unity. Tudo o que for colocado neles, será rastreado e ativado pelo Unity.
@@ -20,5 +22,10 @@ public class CounterDisplay : MonoBehaviour
     private void HandleScore(int count)                         // método que se inscreve em OnCountChanged?.Invoke(count), do script Counter.cs  
     {
         textMeshProUGUI.text = count.ToString();                // o campo Texto do TMP recebe a conversão de count para string.
+    }
+
+    private void OnDestroy()
+    {
+        counter.OnCountChanged -= HandleScore;
     }
 }

@@ -20218,6 +20218,7 @@ GameObject:
   - component: {fileID: 9116018658033585901}
   - component: {fileID: 9116018658033585902}
   - component: {fileID: 9116018658033585903}
+  - component: {fileID: 9116018658033585904}
   m_Layer: 0
   m_Name: BigButton
   m_TagString: Untagged
@@ -22418,6 +22419,8 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   counter: {fileID: 217503552}
+  cycleAnimation: {fileID: 9116018658033585904}
+  savedTransform: {x: 0, y: 0, z: 0}
 --- !u!65 &9116018658033585903
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22439,6 +22442,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09422417, y: 0.055843845, z: 0.09422418}
   m_Center: {x: -0.000000057742007, y: 0.087344885, z: -0.00000024959445}
+--- !u!114 &9116018658033585904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153737841497716932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7298464e27e6483daa81b231d055d540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CycleAnimation
+  bigButton: {fileID: 9116018658033585902}
 --- !u!222 &9137894601860015126
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -60,6 +60,7 @@
     <Compile Include="Assets/MyScripts/PiaoNumbers.cs" />
     <Compile Include="Assets/MyScripts/Door.cs" />
     <Compile Include="Assets/MyScripts/Piao.cs" />
+    <Compile Include="Assets/MyScripts/CycleAnimation.cs" />
     <Compile Include="Assets/MyScripts/BigButton.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/TeleportationActivator.cs" />

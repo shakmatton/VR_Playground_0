@@ -23,7 +23,7 @@ namespace MyScripts
         protected override void OnSelectExited(SelectExitEventArgs args)         // método desativa interação
         {
             base.OnSelectExited(args);
-            Debug.Log("Not Interact");
+            Debug.Log("Not Interacting");
             // oscillator.enabled = true;
             oscillator.RestartOscillator(clampedAngle);                          // método para substituir o "oscillator.enabled = true"
         }

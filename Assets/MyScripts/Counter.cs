@@ -30,6 +30,7 @@ public class Counter : MonoBehaviour
         count++;                                    // incrementa count aqui
         
         OnCountChanged?.Invoke(count);              // se OnCountChanged != null, então o método "delegate event" é invocado
+                                                    // (OnCountChanged é null quando ninguém se inscreveu nele)
     }
     
     

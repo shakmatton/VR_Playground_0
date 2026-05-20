@@ -10,18 +10,35 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class BigButton : XRSimpleInteractable                             // Não usar MonoBehaviour, pois vamos inserir lógica de interação com Grab via código
 {
     [SerializeField] private Counter counter;                             // referência ao Counter.cs (precisa ser arrastado via Inspector)
+                                                                          // [SerializeField] é a conexão entre o BigButton e o Counter  
     
     private IXRSelectInteractor interactor;                               // declaração de interactor, que herda de interface
-
     
-    // ============== Don't forget to create a Box Collider around the BigButton object!  ============== //  
+    [SerializeField] private CycleAnimation cycleAnimation;               // faz referência ao script de animação CycleAnimation
+
+    private Vector3 startPosition;                                        // posição de início do botão
+    public Vector3 savedTransform;                                        // guarda posição original do objeto 
+    
+    // private bool pressed = false;
+    
+    // ==============  DO NOT FORGET TO CREATE A BOX COLLIDER AROUND THE BIGBUTTON OBJECT!  ============== //  
+
+    private void Start()
+    {
+        // startPosition = transform.localPosition;        // registra posição inicial do botão na variável startPosition
+    } 
+    
+    public event Action<Vector3> OnButtonPushAnimation;           // criando evento delegate para animação (apenas para treinamento)
     
     
     protected override void OnSelectEntered(SelectEnterEventArgs args)    // "Press G to activate during Play"
     {
         base.OnSelectEntered(args);                                       // seleciona evento da classe mãe
         interactor = args.interactorObject;                               // interactor referencia o objeto detectado nos args da classe mãe
-        counter.Increment();                                              // chama o método Increment do Counter.cs
+        counter.Increment();                                              // chama o método Increment lá do Counter.cs (o qual, por sua vez, irá disparar um evento)
+        
+        // cycleAnimation.PushButton();
+        OnButtonPushAnimation?.Invoke(startPosition);                     // disparo do evento delegate (deve ser ouvido e inscrito por método de CycleAnimation)
     }
     
     protected override void OnSelectExited(SelectExitEventArgs args)
