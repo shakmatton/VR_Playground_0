@@ -22418,9 +22418,8 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  counter: {fileID: 217503552}
   cycleAnimation: {fileID: 9116018658033585904}
-  savedTransform: {x: 0, y: 0, z: 0}
+  counter: {fileID: 217503552}
 --- !u!65 &9116018658033585903
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22455,6 +22454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CycleAnimation
   bigButton: {fileID: 9116018658033585902}
+  animDuration: 0.5
 --- !u!222 &9137894601860015126
 CanvasRenderer:
   m_ObjectHideFlags: 0
