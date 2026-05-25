@@ -508,14 +508,14 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.nuget.newtonsoft-json@4dfd81071c64/Runtime/Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="AiEditorToolsSdk">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.ai.assistant@198d71476a35/Modules/Unity.AI.Toolkit.Sdk/Editor/AiEditorToolsSdk.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.visualscripting@8bed5ad90189/Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.nuget.mono-cecil@ecb9724e46ff/Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.collections@8d418d297499/Unity.Collections.Tests/System.Runtime.CompilerServices.Unsafe/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/home/iuri/Unity/Hub/Editor/6000.4.1f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>
@@ -904,11 +904,11 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

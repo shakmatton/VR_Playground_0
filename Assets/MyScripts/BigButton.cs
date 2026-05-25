@@ -9,7 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class BigButton : XRSimpleInteractable                             // Não usar MonoBehaviour, pois vamos inserir lógica de interação com Grab via código
 {
-    [SerializeField] private CycleAnimation cycleAnimation;               // faz referência ao script de animação CycleAnimation
+    // [SerializeField] private CycleAnimation cycleAnimation;               // faz referência ao script de animação CycleAnimation
     
     [SerializeField] private Counter counter;                             // referência ao Counter.cs (precisa ser arrastado via Inspector)
                                                                           // [SerializeField] é a conexão entre o BigButton e o Counter

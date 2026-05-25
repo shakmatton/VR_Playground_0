@@ -50,10 +50,15 @@
     <Analyzer Include="/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.dt.app-ui@8ac7e730dd5d/Runtime/MVVM/SourceGenerators/netstandard2.0/MVVMSourceGenerators.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/MyScripts/TeleportationActivator.cs" />
     <Compile Include="Assets/MyScripts/Gaveta.cs" />
     <Compile Include="Assets/MyScripts/DarkChave.cs" />
     <Compile Include="Assets/MyScripts/NewTestCube.cs" />
+    <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
+    <Compile Include="Assets/MyScripts/Porta.cs" />
+    <Compile Include="Assets/MyScripts/Oscillator.cs" />
     <Compile Include="Assets/MyScripts/Gun.cs" />
+    <Compile Include="Assets/MyScripts/Lamp1.cs" />
     <Compile Include="Assets/MyScripts/Lamp2.cs" />
     <Compile Include="Assets/MyScripts/CustomCube.cs" />
     <Compile Include="Assets/MyScripts/Counter.cs" />
@@ -62,13 +67,9 @@
     <Compile Include="Assets/MyScripts/Piao.cs" />
     <Compile Include="Assets/MyScripts/CycleAnimation.cs" />
     <Compile Include="Assets/MyScripts/BigButton.cs" />
-    <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
-    <Compile Include="Assets/MyScripts/TeleportationActivator.cs" />
-    <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
-    <Compile Include="Assets/MyScripts/Porta.cs" />
-    <Compile Include="Assets/MyScripts/Oscillator.cs" />
-    <Compile Include="Assets/MyScripts/Lamp1.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
+    <Compile Include="Assets/MyScripts/Spawner.cs" />
+    <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />
     <Compile Include="Assets/MyScripts/CounterDisplay.cs" />
     <Compile Include="Assets/XRPlayerJump.cs" />
@@ -516,6 +517,9 @@
     <Reference Include="Mono.Cecil">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.nuget.mono-cecil@ecb9724e46ff/Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/PackageCache/com.unity.collections@8d418d297499/Unity.Collections.Tests/System.Runtime.CompilerServices.Unsafe/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>/home/iuri/Unity/Hub/Editor/6000.4.1f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll</HintPath>
     </Reference>
@@ -882,14 +886,26 @@
     <Reference Include="mscorlib">
       <HintPath>/home/iuri/Unity/Hub/Editor/6000.4.1f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InferenceEngine.ONNX.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.ONNX.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.CoreUtils.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.CoreUtils.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    <Reference Include="Unity.AppUI.Navigation">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI.Analytics">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.UI.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Management">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
@@ -900,23 +916,32 @@
     <Reference Include="Unity.Rendering.LightTransport.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Rendering.LightTransport.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.API.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.API.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Editor.Overrides.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Navigation.Updater">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Integrations.Profiler.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Integrations.Profiler.Editor.dll</HintPath>
+    <Reference Include="Unity.PathTracing.Runtime">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.PathTracing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Updater">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
@@ -924,14 +949,29 @@
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Tools.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Tools.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AppUI.Undo">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Undo.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.MCP.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.MCP.Runtime.dll</HintPath>
+    <Reference Include="Unity.XR.CoreUtils">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.CoreUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.UnifiedRayTracing.Runtime">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.UnifiedRayTracing.Runtime.dll</HintPath>
@@ -954,11 +994,11 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Bridge.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Bridge.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.ShaderGraph.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit.Analytics.Hooks.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.Analytics.Hooks.Editor.dll</HintPath>
@@ -966,152 +1006,29 @@
     <Reference Include="Unity.InferenceEngine.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="glTFast.dots">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/glTFast.dots.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.Interaction.Toolkit.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="HFDownloader">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/HFDownloader.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AppUI">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AppUI.Redux">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Redux.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.MCP.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.MCP.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InferenceEngine.ONNX.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.ONNX.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AppUI.Navigation">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Navigation.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI.Analytics">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.UI.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.Management">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
-    </Reference>
-    <Reference Include="glTFast.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/glTFast.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Assistant.Agent.Dynamic.Extension.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Editor.Overrides.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PathTracing.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.PathTracing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.CoreUtils">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.CoreUtils.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.ShaderGraph.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.ShaderGraph.Editor.dll</HintPath>
+    <Reference Include="Unity.AppUI.MVVM">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.MVVM.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Assistant.Annotations.Editor">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Annotations.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AppUI.MVVM">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.MVVM.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.AI.Assistant.Runtime">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Assistant.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AI.Tracing">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AI.Tracing.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualStudio.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AppUI.Redux.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Redux.Editor.dll</HintPath>
@@ -1122,11 +1039,20 @@
     <Reference Include="Unity.Collections">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InputSystem.ForUI">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.MetaQuestSupport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.MetaQuestSupport.dll</HintPath>
@@ -1137,11 +1063,23 @@
     <Reference Include="Unity.AppUI.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.VisualScripting.State.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Interaction.Toolkit.Editor">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Multiplayer.Center.Common">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Multiplayer.Center.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
@@ -1161,6 +1099,12 @@
     <Reference Include="Unity.InferenceEngine.Tokenization">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.Tokenization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.Interaction.Toolkit.dll</HintPath>
     </Reference>
@@ -1173,8 +1117,17 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AppUI">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.AppUI.Navigation.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Navigation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
@@ -1188,17 +1141,23 @@
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InferenceEngine.iOSBLAS">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.iOSBLAS.dll</HintPath>
     </Reference>
-    <Reference Include="glTFast">
-      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/glTFast.dll</HintPath>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Editor">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.XR.OpenXR.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AppUI.Redux">
+      <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.AppUI.Redux.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InferenceEngine">
       <HintPath>/home/iuri/Documentos/Unity Projects/VR_Playground_0/Library/ScriptAssemblies/Unity.InferenceEngine.dll</HintPath>
@@ -1213,6 +1172,10 @@
       <Project>{182cedc4-fe0e-8464-29b7-cccacb68e3e3}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="SeppePeelman.EditorTools.SurfaceAlignTool.csproj">
+      <Project>{d3aa1b65-bf5a-035f-2eb3-77d8c380cc34}</Project>
+      <Name>SeppePeelman.EditorTools.SurfaceAlignTool</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj">
       <Project>{085ca67c-67da-bb6b-a438-df7fbbefe0ef}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets</Name>
@@ -1220,10 +1183,6 @@
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator.csproj">
       <Project>{a897dfee-d5b6-75e7-dac8-c8df26cd556d}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator</Name>
-    </ProjectReference>
-    <ProjectReference Include="SeppePeelman.EditorTools.SurfaceAlignTool.csproj">
-      <Project>{d3aa1b65-bf5a-035f-2eb3-77d8c380cc34}</Project>
-      <Name>SeppePeelman.EditorTools.SurfaceAlignTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
