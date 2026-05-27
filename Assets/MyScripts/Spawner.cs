@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
            Vector3 position = positions[index];                             // um novo struct recebe uma struct da lista de Vector3 (criada anteriormente) na posição "index" 
            objSpawned.transform.localPosition = position;                   // posição do prefab será dada pelo novo struct "position"
            
-           Debug.Log("SpawnnouuuU!!!");
+           // Debug.Log("Spawned...");
            
            yield return new WaitForSeconds(Random.Range(3,8));              // modo de fazer com que o loop pause em quantidade X de tempo (determinada por valores escolhidos)
         }

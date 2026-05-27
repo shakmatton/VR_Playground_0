@@ -57,6 +57,7 @@
     <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
     <Compile Include="Assets/MyScripts/Porta.cs" />
     <Compile Include="Assets/MyScripts/Oscillator.cs" />
+    <Compile Include="Assets/MyScripts/CameraToggle.cs" />
     <Compile Include="Assets/MyScripts/Gun.cs" />
     <Compile Include="Assets/MyScripts/Lamp1.cs" />
     <Compile Include="Assets/MyScripts/Lamp2.cs" />
@@ -68,7 +69,9 @@
     <Compile Include="Assets/MyScripts/CycleAnimation.cs" />
     <Compile Include="Assets/MyScripts/BigButton.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
+    <Compile Include="Assets/MyScripts/AsteroidKillzone.cs" />
     <Compile Include="Assets/MyScripts/Spawner.cs" />
+    <Compile Include="Assets/MyScripts/Mover.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />
     <Compile Include="Assets/MyScripts/CounterDisplay.cs" />
