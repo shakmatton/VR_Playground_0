@@ -1,6 +1,13 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+// Subnamespaces específicos de System (Collections e Collections.Generic) importados, mas nunca foi importado o System diretamente.
+// Como a classe System.Random mora no namespace raiz System, ela nunca entra em cena. O compilador vê apenas uma classe chamada Random — a do UnityEngine — e não há conflito.
+
+/* Este script usa "Random.Range" sem precisar do alias "using Random = UnityEngine.Random" (vide Mover.cs) porque ele nunca importa o namespace "System" diretamente.
+   Os namespaces importados — System.Collections e System.Collections.Generic — são subnamespaces específicos, e nenhum deles carrega a classe System.Random para o escopo.
+   Assim, quando o compilador lê a palavra "Random", só existe uma classe com esse nome disponível: a UnityEngine.Random. Sem ambiguidade, sem conflito. */
 
 public class Spawner : MonoBehaviour
 {
@@ -31,7 +38,7 @@ public class Spawner : MonoBehaviour
            
            // Debug.Log("Spawned...");
            
-           yield return new WaitForSeconds(Random.Range(3,8));              // modo de fazer com que o loop pause em quantidade X de tempo (determinada por valores escolhidos)
+           yield return new WaitForSeconds(Random.Range(1,3));              // modo de fazer com que o loop pause em quantidade X de tempo (determinada por valores escolhidos)
         }
     }                                                                       
 }

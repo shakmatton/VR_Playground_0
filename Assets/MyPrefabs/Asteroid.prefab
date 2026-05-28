@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4395675000508928969}
   - component: {fileID: 2032834861855728838}
   - component: {fileID: 1971882060154831512}
+  - component: {fileID: 4728188194441419029}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: asteroid
@@ -105,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20de4ab00aa91515a2ab9a415218b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mover
-  speed: -2
+  speed: -0.75
+  acceleration: 1
 --- !u!135 &2032834861855728838
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -154,3 +156,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4728188194441419029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918617983790865881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497e411b701c415e80df164b40659ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyScripts.Changer

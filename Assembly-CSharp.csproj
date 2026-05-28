@@ -71,6 +71,7 @@
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
     <Compile Include="Assets/MyScripts/AsteroidKillzone.cs" />
     <Compile Include="Assets/MyScripts/Spawner.cs" />
+    <Compile Include="Assets/MyScripts/ColorChanger.cs" />
     <Compile Include="Assets/MyScripts/Mover.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />

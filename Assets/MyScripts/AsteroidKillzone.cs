@@ -15,7 +15,7 @@ namespace MyScripts
             
             if (other.gameObject.tag == "asteroid")    // Killzone deve "matar" apenas asteroides, em vez de objetos diversos...
             {
-                Destroy(other.gameObject);             // Destrói o gameObject que entra em contato com o Killzone.
+                Destroy(other.gameObject);             // Destrói o gameObject que entra em contato com o KillZone.
             }
         }
     }
