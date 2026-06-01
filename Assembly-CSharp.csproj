@@ -68,6 +68,7 @@
     <Compile Include="Assets/MyScripts/Piao.cs" />
     <Compile Include="Assets/MyScripts/CycleAnimation.cs" />
     <Compile Include="Assets/MyScripts/BigButton.cs" />
+    <Compile Include="Assets/MyScripts/SpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
     <Compile Include="Assets/MyScripts/AsteroidKillzone.cs" />
     <Compile Include="Assets/MyScripts/Spawner.cs" />
