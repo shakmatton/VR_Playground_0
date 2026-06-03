@@ -1,5 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+// fazer comentários sobre esse script depois...
+
 
 namespace MyScripts
 {
@@ -7,7 +12,9 @@ namespace MyScripts
     {
         private Renderer _renderer;       // _renderer : convenção da Microsoft para membros privados...
         private Material _material;       // "renderer sem underline": compilador dá warning (confusão com a declaração "private Renderer renderer")...
-        private Color _color;             // Ao declarar "private Renderer renderer", você esconde esse membro herdado com o seu (compilador avisa pois isso raramente é intencional).
+        [SerializeField] private List<Color> colors;
+        private int _currentColorIndex = 0;
+        [SerializeField] private float frequency;
         
         private void Start()
         {
@@ -20,10 +27,23 @@ namespace MyScripts
              Guardando em material uma única vez no Start, você reutiliza a mesma instância.                                            */ 
             
             _renderer = GetComponent<Renderer>();
-            _material = _renderer.material;               // cria instância de material exclusiva
-            _color = _material.color;
+            _material = _renderer.material;
+            if (colors.Count > 0)
+            {
+                StartCoroutine(ChangeColorRoutine());
+            }
+        }
 
-            Debug.Log(_color);
+        private IEnumerator ChangeColorRoutine()
+        {
+            while (true)
+            {
+                Debug.Log(_currentColorIndex);
+                _material.color = colors[_currentColorIndex];
+                _currentColorIndex = (++_currentColorIndex) % colors.Count;
+                Debug.Log(_currentColorIndex);
+                yield return new WaitForSeconds(frequency);
+            }
         }
     }
 }

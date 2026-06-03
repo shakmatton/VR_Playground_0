@@ -3736,7 +3736,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -1
+  near clip plane: 0.01
   far clip plane: 13
   field of view: 90
   orthographic: 1
@@ -4731,6 +4731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraToggle
   topViewCanvas: {fileID: 821186239}
   topViewCamera: {fileID: 343490766}
+  toggleAction: {fileID: 4880929689781072573, guid: 9c51fc16009852b74a8ab858c3683b97, type: 3}
 --- !u!4 &402955825
 Transform:
   m_ObjectHideFlags: 0
@@ -20321,6 +20322,9 @@ GameObject:
   - component: {fileID: 3851685962918576091}
   - component: {fileID: 3851685962918576092}
   - component: {fileID: 3851685962918576093}
+  - component: {fileID: 3851685962918576094}
+  - component: {fileID: 3851685962918576095}
+  - component: {fileID: 3851685962918576096}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -21095,7 +21099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691272582093204165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dd52a3f0edb7e82aae849216c84e924, type: 3}
   m_Name: 
@@ -21108,12 +21112,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691272582093204165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 9c51fc16009852b74a8ab858c3683b97, type: 3}
   m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -21128,9 +21132,54 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: 
+  m_DefaultActionMap: SpaceshipActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3851685962918576094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691272582093204165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfdcf2563e684c25b8c8f640d91ed6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyScripts.NewSpaceshipController
+  _speed: 6
+  moveAction: {fileID: 4443848733482603829, guid: 9c51fc16009852b74a8ab858c3683b97, type: 3}
+--- !u!114 &3851685962918576095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691272582093204165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: 9c51fc16009852b74a8ab858c3683b97, type: 3}
+--- !u!114 &3851685962918576096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691272582093204165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497e411b701c415e80df164b40659ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MyScripts.ColorChanger
+  colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.07629752, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.07417959, b: 0.95182616, a: 1}
+  frequency: 0
 --- !u!114 &3863953034887875552
 MonoBehaviour:
   m_ObjectHideFlags: 0

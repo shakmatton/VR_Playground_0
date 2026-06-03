@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// ver script 'NewSpaceshipController' com nova abordagem
+
 namespace MyScripts
 {
     public class SpaceshipController : MonoBehaviour

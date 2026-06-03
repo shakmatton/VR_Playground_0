@@ -75,6 +75,7 @@
     <Compile Include="Assets/MyScripts/ColorChanger.cs" />
     <Compile Include="Assets/MyScripts/Mover.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
+    <Compile Include="Assets/MyScripts/NewSpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />
     <Compile Include="Assets/MyScripts/CounterDisplay.cs" />
     <Compile Include="Assets/XRPlayerJump.cs" />
