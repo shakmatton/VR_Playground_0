@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// fazer comentários sobre esse script depois...
-
-
 namespace MyScripts
 {
     public class ColorChanger: MonoBehaviour
     {
-        private Renderer _renderer;       // _renderer : convenção da Microsoft para membros privados...
-        private Material _material;       // "renderer sem underline": compilador dá warning (confusão com a declaração "private Renderer renderer")...
-        [SerializeField] private List<Color> colors;
-        private int _currentColorIndex = 0;
-        [SerializeField] private float frequency;
+        private Renderer _renderer;                             // _renderer : convenção da Microsoft para membros privados...
+        private Material _material;                             // "renderer sem underline": compilador dá warning (confusão com a declaração "private Renderer renderer")...
+        
+        [SerializeField] private List<Color> colors;                    // Array de cores (no Inspector, deve-se arrastar cada cor para cada slot aberto em "+")
+        [SerializeField] private float frequency;                       // rapidez com que as cores mudam (frequência do ciclo de cores)
+        
+        private int _currentColorIndex = 0;                             // aponta para primeira posição do array
         
         private void Start()
         {
@@ -28,21 +27,30 @@ namespace MyScripts
             
             _renderer = GetComponent<Renderer>();
             _material = _renderer.material;
-            if (colors.Count > 0)
-            {
-                StartCoroutine(ChangeColorRoutine());
+            
+            
+            // OBS.: No Unity, não esquecer de zerar o canal Alfa das cores!
+            
+            
+            if (colors.Count > 0)                                   // assegura que a routine seja chamada somente se houver alguma cor já inserida no objeto
+            {                                                       // (lembrar do caso em que o script existia na nave e no asteroide, mas só o primeiro objeto tinha cores...)
+                
+                StartCoroutine(ChangeColorRoutine());               // inicia rotina com o referido método
             }
         }
 
-        private IEnumerator ChangeColorRoutine()
+        private IEnumerator ChangeColorRoutine()                                    // rotina
         {
-            while (true)
+            while (true)                                                            // executa sempre, mas irá pausar por "frequency" segundos
             {
-                Debug.Log(_currentColorIndex);
-                _material.color = colors[_currentColorIndex];
-                _currentColorIndex = (++_currentColorIndex) % colors.Count;
-                Debug.Log(_currentColorIndex);
-                yield return new WaitForSeconds(frequency);
+                // Debug.Log(_currentColorIndex);
+                
+                _material.color = colors[_currentColorIndex];                       // material do objeto recebe nova cor
+                _currentColorIndex = (++_currentColorIndex) % colors.Count;         // cálculo da próxima cor usando mod em lista circular (CUIDADO com a ordem de uso do operador ++)
+                
+                // Debug.Log(_currentColorIndex);
+                
+                yield return new WaitForSeconds(frequency);                         // pausa por "frequency" segundos (a cor de mantém inalterada por esse período de tempo)
             }
         }
     }

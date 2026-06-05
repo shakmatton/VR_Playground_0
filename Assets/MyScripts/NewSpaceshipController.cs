@@ -27,6 +27,8 @@ namespace MyScripts
         {
             moveAction.action.performed += OnMove;                      // OnMove ocorrerá quando o evento (botão pressionado) ocorrer
             moveAction.action.canceled  += OnStop;                      // OnStop ocorrerá quando o evento (botão largado) ocorrer
+            
+            SpaceshipLimits.OnSpaceshipOutOfBounds += HandleOutOfBounds;
         }
 
         private void OnMove(InputAction.CallbackContext ctx)            // aqui ocorre a leitura dos valores (botões)
@@ -43,6 +45,12 @@ namespace MyScripts
         {  
             moveAction.action.performed -= OnMove;                     // OnMove e OnStop são "desligados", para evitar serem chamados inadvertidamente (e para gerenciar memória) 
             moveAction.action.canceled  -= OnStop;
+            SpaceshipLimits.OnSpaceshipOutOfBounds -= HandleOutOfBounds;
+        }
+        
+        private void HandleOutOfBounds(Vector3 clampedPosition)
+        {
+            transform.position = clampedPosition;
         }
 
         private void Update()

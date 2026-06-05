@@ -1707,6 +1707,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1bb8ac6d49b4bbe8d0a43005a26072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &179964562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179964563}
+  m_Layer: 0
+  m_Name: Limit Point A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &179964563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179964562}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.04, y: 0.14100003, z: 2.96}
+  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 577766001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187311998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6136,6 +6167,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 206097324098826367}
+  - {fileID: 179964563}
+  - {fileID: 1638103283}
   m_Father: {fileID: 1028352656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581899125
@@ -15821,6 +15854,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635453613}
   m_CullTransparentMesh: 1
+--- !u!1 &1638103282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638103283}
+  m_Layer: 0
+  m_Name: Limit Point B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1638103283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638103282}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.3799996, y: -0.9, z: -5.49}
+  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 577766001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693717711
 GameObject:
   m_ObjectHideFlags: 0
@@ -20325,6 +20389,7 @@ GameObject:
   - component: {fileID: 3851685962918576094}
   - component: {fileID: 3851685962918576095}
   - component: {fileID: 3851685962918576096}
+  - component: {fileID: 3851685962918576097}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -21170,7 +21235,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691272582093204165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 497e411b701c415e80df164b40659ee7, type: 3}
   m_Name: 
@@ -21180,6 +21245,20 @@ MonoBehaviour:
   - {r: 0.07629752, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.07417959, b: 0.95182616, a: 1}
   frequency: 0
+--- !u!114 &3851685962918576097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691272582093204165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f802e44e4547615b86f61562b6f1770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpaceshipLimits
+  limitPointA: {fileID: 179964562}
+  limitPointB: {fileID: 1638103282}
 --- !u!114 &3863953034887875552
 MonoBehaviour:
   m_ObjectHideFlags: 0

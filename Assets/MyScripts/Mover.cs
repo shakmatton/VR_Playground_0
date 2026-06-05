@@ -27,3 +27,5 @@ public class Mover : MonoBehaviour                                      // Para 
                                                                                                // Movimento usa últimos valores definidos: velocidade e aceleração.
     }
 }
+
+

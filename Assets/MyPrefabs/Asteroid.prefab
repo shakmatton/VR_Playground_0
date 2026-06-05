@@ -168,3 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497e411b701c415e80df164b40659ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyScripts.Changer
+  colors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.1859603, g: 0.1859603, b: 0.1859603, a: 0}
+  - {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  frequency: 0.06
