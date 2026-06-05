@@ -56,7 +56,7 @@ namespace MyScripts
         private void Update()
         {
             Vector3 movement = new Vector3(_moveInput.x, 0f, _moveInput.y);             // composição de valores para formar um Vector3
-            transform.localPosition += movement * _speed * Time.deltaTime;              // Vector3 formado atualiza a posição do spaceship
+            transform.position += movement * _speed * Time.deltaTime;              // Vector3 formado atualiza a posição do spaceship
         }
     }
 }
