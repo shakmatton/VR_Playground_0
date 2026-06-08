@@ -1,6 +1,18 @@
 using UnityEngine;
 using System;
 
+/* Esse script é complexo, mas poderia funcionar com LateUpdate ou enviando o objeto para outro script (NewSpaceshipController.cs, via SerializeField, por exemplo).
+   Aqui, estamos usando Eventos, mas usar isso aqui era exagero... não precisa praticar isso aqui.
+   
+   A natureza de usar Eventos diz respeito a ter uma mensagem disparada anonimamente. Isso é útil para quando temos muitos objetos com comportamentos diferentes. 
+   Por exemplo, se um jogo tipo "Pong" fosse misturado com a cena dos asteroides, poderia ser interessante usar eventos aqui.
+      
+   Em relação ao script, a ideia era a de modularizar as coisas ("cada um no seu quadrado": NewSpaceShipController.cs controla nave, SpaceshipLimits.cs detecta bordas).
+   Porém, para um treino inicial, foi aceitável inserir o comportamento do script SpaceshipLimits.cs dentro de NewSpaceShipController.cs.
+   Portanto, esse script foi desativado no Inspector, e sua lógica foi replicada dentro de NewSpaceshipController.cs  */
+
+
+/*
 public class SpaceshipLimits : MonoBehaviour
 {
     [SerializeField] private GameObject limitPointA;
@@ -12,25 +24,16 @@ public class SpaceshipLimits : MonoBehaviour
 
     public static event Action<Vector3> OnSpaceshipOutOfBounds;
     
-    // private Vector3 _limitA;
-    // private Vector3 _limitB;
-
-
     private void Start()
     {
         Vector3 posA = limitPointA.transform.position;
         Vector3 posB = limitPointB.transform.position;
         
-        // _spaceshipPosition = GetComponentInParent<Transform>().position;
-
         _minX = Mathf.Min(posA.x, posB.x);
         _maxX = Mathf.Max(posA.x, posB.x);
         
-        _maxY = Mathf.Max(posA.y, posB.z);
-        _minY = Mathf.Min(posA.y, posB.z);
-        
-        // _limitA = _limitPoint1.transform.localPosition; 
-        // _limitB = _limitPoint2.transform.localPosition;
+        _maxY = Mathf.Max(posA.z, posB.z);
+        _minY = Mathf.Min(posA.z, posB.z);
     }
 
     private void CheckBounds()
@@ -50,14 +53,9 @@ public class SpaceshipLimits : MonoBehaviour
         }
     }
     
-    
-    // private void OnSpaceshipOutOfBounds()
-    // {
-    //     if (_spaceshipPosition.x < _limitA.x || _spaceshipPosition.x > _limitB.x || _spaceshipPosition.y > _limitB.y || _spaceshipPosition.y < _limitA.y)
-
     private void Update()
     {
         CheckBounds();
-        // _spaceshipPosition = GetComponentInParent<Transform>().position;
     }
 }
+*/

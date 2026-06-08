@@ -63,6 +63,7 @@
     <Compile Include="Assets/MyScripts/Lamp2.cs" />
     <Compile Include="Assets/MyScripts/CustomCube.cs" />
     <Compile Include="Assets/MyScripts/Counter.cs" />
+    <Compile Include="Assets/MyScripts/AsteroidDescription.cs" />
     <Compile Include="Assets/MyScripts/PiaoNumbers.cs" />
     <Compile Include="Assets/MyScripts/Door.cs" />
     <Compile Include="Assets/MyScripts/Piao.cs" />

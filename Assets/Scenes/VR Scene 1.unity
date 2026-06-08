@@ -1707,37 +1707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1bb8ac6d49b4bbe8d0a43005a26072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &179964562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 179964563}
-  m_Layer: 0
-  m_Name: Limit Point A
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &179964563
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179964562}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.04, y: 0.14100003, z: 2.96}
-  m_LocalScale: {x: 2, y: 1, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 577766001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187311998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6162,13 +6131,11 @@ Transform:
   m_GameObject: {fileID: 577766000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.68411994, y: 0.9, z: 0.14021999}
+  m_LocalPosition: {x: 2.207726, y: 0.9, z: 0.37468958}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 206097324098826367}
-  - {fileID: 179964563}
-  - {fileID: 1638103283}
   m_Father: {fileID: 1028352656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581899125
@@ -11176,7 +11143,7 @@ Transform:
   m_GameObject: {fileID: 1028352655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.85588, y: 0, z: -0.48022}
+  m_LocalPosition: {x: -2.85588, y: 0, z: -7.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11801,8 +11768,8 @@ Transform:
   m_GameObject: {fileID: 1143388630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4521, y: 0, z: 3.2267}
-  m_LocalScale: {x: 2.3170252, y: 1.3889, z: 1.4155669}
+  m_LocalPosition: {x: -4.4521, y: 0, z: -0.6693}
+  m_LocalScale: {x: 2.3170252, y: 1.3889, z: 2.19469}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -14967,7 +14934,7 @@ Transform:
   m_GameObject: {fileID: 1545175877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4303901, y: 1.041, z: 1.1839501}
+  m_LocalPosition: {x: -2.4303901, y: 1.041, z: 6.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15854,37 +15821,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635453613}
   m_CullTransparentMesh: 1
---- !u!1 &1638103282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1638103283}
-  m_Layer: 0
-  m_Name: Limit Point B
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1638103283
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638103282}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3799996, y: -0.9, z: -5.49}
-  m_LocalScale: {x: 2, y: 1, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 577766001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693717711
 GameObject:
   m_ObjectHideFlags: 0
@@ -20229,7 +20165,7 @@ Transform:
   m_GameObject: {fileID: 691272582093204165}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.000000030908623, z: 0.000000030908623, w: 0.7071068}
-  m_LocalPosition: {x: 0.6458825, y: 0.1305239, z: -1.8916605}
+  m_LocalPosition: {x: -5.23, y: 0.13, z: 3.88}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -20389,7 +20325,6 @@ GameObject:
   - component: {fileID: 3851685962918576094}
   - component: {fileID: 3851685962918576095}
   - component: {fileID: 3851685962918576096}
-  - component: {fileID: 3851685962918576097}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -21214,6 +21149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyScripts.NewSpaceshipController
   _speed: 6
   moveAction: {fileID: 4443848733482603829, guid: 9c51fc16009852b74a8ab858c3683b97, type: 3}
+  Xlimit: 2.75
+  Ylimit: 5
 --- !u!114 &3851685962918576095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21245,20 +21182,6 @@ MonoBehaviour:
   - {r: 0.07629752, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.07417959, b: 0.95182616, a: 1}
   frequency: 0
---- !u!114 &3851685962918576097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691272582093204165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f802e44e4547615b86f61562b6f1770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpaceshipLimits
-  limitPointA: {fileID: 179964562}
-  limitPointB: {fileID: 1638103282}
 --- !u!114 &3863953034887875552
 MonoBehaviour:
   m_ObjectHideFlags: 0

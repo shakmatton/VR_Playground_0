@@ -24,8 +24,8 @@ namespace MyScripts
         void Start()
         {
             // Garante estado inicial correto
-            topViewCanvas.SetActive(false);                                // visão de topo do Canvas inicia desativada 
-            topViewCamera.enabled = false;                                 // visão de topo da câmera inicia oculta 
+            topViewCanvas.SetActive(true);                                 // visão de topo do Canvas inicia ativada 
+            topViewCamera.enabled = true;                                  // visão de topo da câmera inicia à mostra 
         }
 
         private void OnEnable()
