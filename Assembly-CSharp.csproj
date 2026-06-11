@@ -64,6 +64,7 @@
     <Compile Include="Assets/MyScripts/CustomCube.cs" />
     <Compile Include="Assets/MyScripts/Counter.cs" />
     <Compile Include="Assets/MyScripts/AsteroidDescription.cs" />
+    <Compile Include="Assets/MyScripts/PrefabDestroyer.cs" />
     <Compile Include="Assets/MyScripts/PiaoNumbers.cs" />
     <Compile Include="Assets/MyScripts/Door.cs" />
     <Compile Include="Assets/MyScripts/Piao.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets/MyScripts/BigButton.cs" />
     <Compile Include="Assets/MyScripts/SpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
+    <Compile Include="Assets/MyScripts/SpaceBullet.cs" />
     <Compile Include="Assets/MyScripts/AsteroidKillzone.cs" />
     <Compile Include="Assets/MyScripts/Spawner.cs" />
     <Compile Include="Assets/MyScripts/ColorChanger.cs" />
