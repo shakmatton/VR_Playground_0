@@ -104,7 +104,7 @@
                 {
                     "name": "",
                     "id": "15866a1d-3511-4a81-b188-bc51c1ae96c5",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

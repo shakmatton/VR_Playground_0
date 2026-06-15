@@ -12,10 +12,16 @@ namespace MyScripts
         [SerializeField] private float _speed = 6f;                     // velocidade do spaceShip
         
         [SerializeField] private InputActionReference moveAction;       // referencia o Input Action criado para a movimentação da nave
+        [SerializeField] private InputActionReference shootAction;      // todos os Input Actions criados tem que ter sua contrapartida definida via código 
+        
+        [SerializeField] private SpaceBullet bulletPrefab;              // o prefab de tiro da nave
+        [SerializeField] private Transform shootPosition;               // a posição do tiro da nave
         
         [SerializeField] private float Xlimit = 10f;                    // limite horizontal de movimentação no eixo X
         [SerializeField] private float Ylimit = 10f;                    // limite vertical de movimentação no eixo Y
 
+        // [HideInInspector] public NewSpaceshipController spaceship;      // a ser usado pelo script SpaceBullet.cs
+        
         private Vector3 _initialPosition;                               // para registrar a posição inicial da nave
         
         /* InputActionReference: forma de conseguir obter o input do teclado.
@@ -26,6 +32,7 @@ namespace MyScripts
          
          Após desdobrar, selecione o Spaceship Action Map/Move2D.
          Arraste ele para o campo "Move Action" do script New Spaceship Controller, que está no objeto Spaceship (filho de Spacecraft).         */
+
         
         private void Start()
         {
@@ -61,6 +68,13 @@ namespace MyScripts
         {
             moveAction.action.performed += OnMove;                      // OnMove ocorrerá quando o evento (botão pressionado) ocorrer
             moveAction.action.canceled  += OnStop;                      // OnStop ocorrerá quando o evento (botão largado) ocorrer
+            
+            shootAction.action.performed += OnShoot;                    // ação que ocorre quando o tiro da nave é dado
+        }
+
+        private void OnShoot(InputAction.CallbackContext ctx)                               // método que cuida do tiro da nave
+        {
+            Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);         // SEMPRE USAR INSTANTIATE P/ O SPAWN DOS PREFABS!   (ver outro exemplo em Spawner.cs)
         }
 
         private void OnMove(InputAction.CallbackContext ctx)            // aqui ocorre a leitura dos valores (botões)
@@ -77,6 +91,7 @@ namespace MyScripts
         {  
             moveAction.action.performed -= OnMove;                     // OnMove e OnStop são "desligados", para evitar serem chamados inadvertidamente (e para gerenciar memória) 
             moveAction.action.canceled  -= OnStop;
+            shootAction.action.performed -= OnShoot;
         }
 
         private void Update()

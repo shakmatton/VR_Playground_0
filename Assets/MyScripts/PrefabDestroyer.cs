@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Versão 1: nave toca no asteroide e destrói ele (útil para futuros power-ups).
@@ -9,16 +10,20 @@ namespace MyScripts
 {
     public class PrefabDestroyer : MonoBehaviour
     {
-        [SerializeField] private GameObject prefab;         // arrastar prefab que já tenha um tag próprio
-
+        [SerializeField] private List<string> tagsToDestroy;                // lógica: criar um "pool" de tags destruíveis
+        [SerializeField] private bool autoDestroy;                          // boolean configurado via Inspector
+    
         private void OnTriggerEnter(Collider other)         // usar isso em vez de OnCollisionTrigger, pois este último é indicado para objetos com interação física 
         {
-            if (prefab == null) return;                  // evita problema de prefab no Inspector vazio/nulo (evita NullReferenceException, que nunca ativaria o destroy).
-            
-            if (other.CompareTag(prefab.tag))               // "other" é o objeto embutido em um script (spacechip ou asteroide)
-            {                                               // comparação checa se o prefab (spaceship ou asteroide) entrou na zona de collider com outro prefab com tag (asteroide).
-                Destroy(other.gameObject);                  // objeto prefab (asteroide) destruído
-            }
-        }
+            if (tagsToDestroy.Contains(other.tag))          // se existir uma outra tag pertencente ao nosso conjunto de tags "tagsToDestroy"...
+            {
+                Destroy(other.gameObject);                  // ...objeto que colidir com este prefab corrente aqui é destruído
+                
+                if (autoDestroy)                            // ...e caso a autodestruição seja true...
+                {
+                    Destroy(gameObject);                    // ... aí é o prefab que contém esse script (tiro, asteroide, nave) que se autodestroi.
+                }                                           // obs.: no Inspector, asteroide não tem "TagsToDestroy" nem AutoDestroy ativado. 
+            }                                               // obs. 2: no Inspector, nave tem "TagsToDestroy" (asteroide) mas não tem AutoDestroy ativado.
+        }                                                   // obs. 3: no Inspector, SpaceBullet (tiro) tem "TagsToDestroy" (asteroide e nave) e tem AutoDestroy ativado.
     }
 }

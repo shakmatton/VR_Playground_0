@@ -187,4 +187,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af5bba3def3d942fa7d9ef93e859435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyScripts.PrefabDestroyer
-  prefab: {fileID: 1918617983790865881}
+  tagsToDestroy: []
+  autoDestroy: 0
