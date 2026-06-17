@@ -8,8 +8,6 @@ public class SpaceBullet : MonoBehaviour
     [SerializeField] private float bulletSpeed = 1.5f;                          // velocidade do tiro
     [SerializeField] private float timeLimit = 3f;                              // tempo de existência do tiro
 
-    [SerializeField] private GameObject shotObject;                             // é o prefab de tiro da nave a ser gerado
-
     private void Start()
     { 
         Destroy(gameObject, timeLimit);                                         // certo tempo após o início da vida do tiro, ele é destruído 

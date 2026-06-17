@@ -19,11 +19,11 @@ namespace MyScripts
             {
                 Destroy(other.gameObject);                  // ...objeto que colidir com este prefab corrente aqui é destruído
                 
-                if (autoDestroy)                            // ...e caso a autodestruição seja true...
+                if (autoDestroy)                            // se autodestruição estiver marcado como True...
                 {
-                    Destroy(gameObject);                    // ... aí é o prefab que contém esse script (tiro, asteroide, nave) que se autodestroi.
-                }                                           // obs.: no Inspector, asteroide não tem "TagsToDestroy" nem AutoDestroy ativado. 
-            }                                               // obs. 2: no Inspector, nave tem "TagsToDestroy" (asteroide) mas não tem AutoDestroy ativado.
-        }                                                   // obs. 3: no Inspector, SpaceBullet (tiro) tem "TagsToDestroy" (asteroide e nave) e tem AutoDestroy ativado.
+                    Destroy(gameObject);                    // ... aí é o prefab que contém esse script (tiro, asteroide) que se autodestroi.
+                }                                           // obs.: no Inspector, asteroide tem "TagsToDestroy" (nave) e tem AutoDestroy ativado.
+            }                                               // obs. 2: no Inspector, SpaceBullet (tiro) tem "TagsToDestroy" (asteroid e nave) e tem AutoDestroy ativado.
+        }
     }
 }

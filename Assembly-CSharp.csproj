@@ -78,6 +78,7 @@
     <Compile Include="Assets/MyScripts/ColorChanger.cs" />
     <Compile Include="Assets/MyScripts/Mover.cs" />
     <Compile Include="Assets/MyScripts/SpaceshipLimits.cs" />
+    <Compile Include="Assets/MyScripts/SingletonUI.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/NewSpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />
