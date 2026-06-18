@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Assets/MyScripts/TeleportationActivator.cs" />
     <Compile Include="Assets/MyScripts/Gaveta.cs" />
+    <Compile Include="Assets/MyScripts/UI_Manager.cs" />
     <Compile Include="Assets/MyScripts/DarkChave.cs" />
     <Compile Include="Assets/MyScripts/NewTestCube.cs" />
     <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Assets/MyScripts/ColorChanger.cs" />
     <Compile Include="Assets/MyScripts/Mover.cs" />
     <Compile Include="Assets/MyScripts/SpaceshipLimits.cs" />
-    <Compile Include="Assets/MyScripts/SingletonUI.cs" />
     <Compile Include="Assets/MyScripts/LeverInteractable.cs" />
     <Compile Include="Assets/MyScripts/NewSpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/Star.cs" />

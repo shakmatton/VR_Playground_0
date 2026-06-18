@@ -190,3 +190,5 @@ MonoBehaviour:
   tagsToDestroy:
   - nave
   autoDestroy: 1
+  triggerGameOver: 1
+  gameOverMessage: 0

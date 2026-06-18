@@ -12,6 +12,10 @@ namespace MyScripts
     {
         [SerializeField] private List<string> tagsToDestroy;                // lógica: criar um "pool" de tags destruíveis
         [SerializeField] private bool autoDestroy;                          // boolean configurado via Inspector
+        
+        [SerializeField] private bool triggerGameOver;                      // Será a tela de UI de GameOver. Configurar no Inspector com true no asteroide e false no tiro.
+                                                                            // Isso permite reusar o mesmo script com comportamentos diferentes, sem duplicar código.
+        public bool gameOverMessage;
     
         private void OnTriggerEnter(Collider other)         // usar isso em vez de OnCollisionTrigger, pois este último é indicado para objetos com interação física 
         {
@@ -23,7 +27,15 @@ namespace MyScripts
                 {
                     Destroy(gameObject);                    // ... aí é o prefab que contém esse script (tiro, asteroide) que se autodestroi.
                 }                                           // obs.: no Inspector, asteroide tem "TagsToDestroy" (nave) e tem AutoDestroy ativado.
-            }                                               // obs. 2: no Inspector, SpaceBullet (tiro) tem "TagsToDestroy" (asteroid e nave) e tem AutoDestroy ativado.
+                                                            // obs. 2: no Inspector, SpaceBullet (tiro) tem "TagsToDestroy" (asteroid e nave) e tem AutoDestroy ativado.
+                
+                // Abaixo: acesso ao Singleton diretamente — sem [SerializeField], sem Inspector
+                if (triggerGameOver)
+                {
+                     UI_Manager.Instance.ShowGameOver();    // Aqui acontece a comunicação com o Singleton: não há referência no Inspector, não há [SerializeField].
+                                                            // O script simplesmente pergunta: "classe UI_Manager, onde está sua instância?" — e chama o método nela.
+                }
+            }
         }
     }
 }
