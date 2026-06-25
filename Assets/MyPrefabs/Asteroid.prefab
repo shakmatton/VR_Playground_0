@@ -189,6 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyScripts.PrefabDestroyer
   tagsToDestroy:
   - nave
+  - asteroid
   autoDestroy: 1
-  triggerGameOver: 1
-  gameOverMessage: 0
+  triggerGameOver: 0

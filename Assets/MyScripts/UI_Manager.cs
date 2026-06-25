@@ -6,7 +6,7 @@ namespace MyScripts
     { 
         public static UI_Manager Instance { get; private set; }
         
-        // get significa que qualquer classe pode ler valores de qualquer lugar
+        // get (puramente escrito assim, desse jeito) significa que qualquer classe pode ler valores de qualquer lugar
         // private set impede que scripts externos a sobrescrevam. Somente a classe UI_Manager pode escrever algo nesse script aqui
         // (note que só ela, e mais ninguém, pode atribuir valores no Awake).
         
@@ -16,7 +16,7 @@ namespace MyScripts
         
            UI_Manager.Instance.ShowGameOver();  
                   seria equivalente a 
-           minhaReferenciaParaOUI_Manager.ShowGameOver();  (se se tem a referência direta)
+           minhaReferenciaParaUI_Manager.ShowGameOver();  (se se tem a referência direta)
            
         A diferença é que, com o Singleton, não é preciso arrastar nada no Inspector. A classe guarda o caminho para si mesma.
         O prefab apenas pergunta para a classe UI_Manager onde está a sua instância, e depois chama o método nessa instância.   */
@@ -25,7 +25,6 @@ namespace MyScripts
         [Header("Telas de UI")]                                                             // deve aparecer no objeto UI_Manager (as telas devem ser arrastadas para cada campo)
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject victoryScreen;
-        [SerializeField] private GameObject creditsScreen;
         [SerializeField] private GameObject introScreen;
 
         
@@ -38,14 +37,14 @@ namespace MyScripts
              se ainda não existe nenhum UI_Manager registrado, este objeto se registra como a instância oficial.
              DontDestroyOnLoad faz o objeto sobreviver caso haja troca de cena — útil se o UI_Manager precisar persistir entre cenas. */
             
-            if (Instance == null)
+            if (Instance == null)                       // se não há nenhum UI Instance instanciado ainda...
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);                                              // persiste entre cenas, se necessário
+                Instance = this;                           // ... Instance referencia a instância de UI corrente   
+                DontDestroyOnLoad(gameObject);             // Protege a instância de UI referenciada, fazendo ela persistir entre cenas, se necessário (útil para múltiplas cenas)
             }
             else
             {
-                Destroy(gameObject);                                                        // NOTE: Destroy(gameObject), não Destroy(this)!
+                Destroy(gameObject);                       // NOTE: Destroy(gameObject), e não Destroy(this)!
                 /*
                  Se já existe um UI_Manager registrado (por exemplo, foi carregada uma nova cena que também tem um UI_Manager no prefab),
                  este segundo é destruído imediatamente. Isso garante que só existe um.
@@ -55,28 +54,35 @@ namespace MyScripts
             }
         }
         
-        // ── Método interno auxiliar ───────────────────────────────────────────
-
-        private void HideAllScreens()                                                       // garante que todas as telas estejam desativadas
-        {
-            gameOverScreen.SetActive(false);
-            victoryScreen.SetActive(false);
-            creditsScreen.SetActive(false);
-            introScreen.SetActive(false);
-        }
-        
-        // ── Métodos públicos que qualquer script pode chamar ──────────────────
+        // ── Método Start é private e chama um método público
 
         private void Start()
         {
-            HideAllScreens();                                                              // procedimento padrão: esconder todas as telas e mostrar a desejada somente 
-            ShowIntro();                                                                   // começa na tela de intro do jogo
+            HideAllScreens();                              // procedimento padrão: esconder todas as telas e mostrar a desejada somente 
+            ShowIntro();                                   // começa na tela de intro do jogo
+        }
+        
+        // ── Método interno auxiliar ───────────────────────────────────────────
+
+        public void HideAllScreens()                      // garante que todas as telas estejam desativadas
+        {
+            gameOverScreen.SetActive(false);
+            victoryScreen.SetActive(false);
+            introScreen.SetActive(false);
+        }
+        
+        // ── Métodos públicos que qualquer script pode chamar
+        
+        public void ShowIntro()                           // public aqui poderia ser private, pois esse método público é chamado dentro do método private Start. 
+        {
+            HideAllScreens();
+            introScreen.SetActive(true);
         }
 
         public void ShowGameOver()
         {
             HideAllScreens();
-            gameOverScreen.SetActive(true);                                                // SetActive(true/false) ativa/desativa o GameObject na cena, tornando-o visível/invisível. 
+            gameOverScreen.SetActive(true);               // SetActive(true/false) ativa/desativa o GameObject na cena, tornando-o visível/invisível. 
         }
 
         public void ShowVictory()
@@ -85,16 +91,5 @@ namespace MyScripts
             victoryScreen.SetActive(true);
         }
 
-        public void ShowCredits()
-        {
-            HideAllScreens();
-            creditsScreen.SetActive(true);
-        }
-       
-        public void ShowIntro()
-        {
-            HideAllScreens();
-            introScreen.SetActive(true);
-        }
     }
 }

@@ -106,5 +106,13 @@ namespace MyScripts
             
             transform.position = predictedPosition;         // ao final, posição da nave é atualizada com predictedPosition.
         }
+
+        private void OnDestroy()
+        {    
+            // Acesso ao Singleton diretamente — sem [SerializeField], sem Inspector
+            
+            UI_Manager.Instance.ShowGameOver();    // Aqui acontece a comunicação com o Singleton: não há referência no Inspector, não há [SerializeField].
+            // O script simplesmente pergunta: "classe UI_Manager, onde está sua instância?" — e chama o método nela.
+        }
     }
 }

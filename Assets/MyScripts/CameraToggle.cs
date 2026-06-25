@@ -5,7 +5,6 @@ namespace MyScripts
 {
     public class CameraToggle : MonoBehaviour
     {
-        [SerializeField] private GameObject topViewCanvas;              // o Canvas com RawImage
         [SerializeField] private Camera topViewCamera;                  // sua "2ndCamera"
     
         [SerializeField] private InputActionReference toggleAction;     // referencia o Input Action criado para a ativação/desativação da segunda câmera
@@ -24,7 +23,6 @@ namespace MyScripts
         void Start()
         {
             // Garante estado inicial correto
-            topViewCanvas.SetActive(true);                                 // visão de topo do Canvas inicia ativada 
             topViewCamera.enabled = true;                                  // visão de topo da câmera inicia à mostra 
         }
 
@@ -36,7 +34,6 @@ namespace MyScripts
         private void ActionOnPerformed(InputAction.CallbackContext ctx)    // lógica de ativação da segunda câmera 
         {
             _showingTop = !_showingTop;                                    // toggle da visão de topo 
-            topViewCanvas.SetActive(_showingTop);                          // ativa/desativa canvas (visão de topo) 
             topViewCamera.enabled = _showingTop;                           // faz aparecer segunda câmera (visão de topo)
         }
 
