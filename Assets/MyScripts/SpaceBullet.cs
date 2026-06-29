@@ -13,8 +13,13 @@ public class SpaceBullet : MonoBehaviour
         Destroy(gameObject, timeLimit);                                         // certo tempo após o início da vida do tiro, ele é destruído 
     }                                                                           // não confundir com o método do ciclo de vida do Unity chamado "OnDestroy()" 
                                                                                 // OnDestroy() ocorre só quando o objeto deixa de existir (diferente do uso explícito "Destroy" aqui)
+    
     private void Update()
     {
         transform.position += transform.forward * bulletSpeed * Time.deltaTime;          // tiro se move pra frente
     }
 }
+
+
+
+

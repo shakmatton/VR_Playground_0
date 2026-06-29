@@ -26,6 +26,7 @@ namespace MyScripts
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject victoryScreen;
         [SerializeField] private GameObject introScreen;
+        // [SerializeField] private GameObject scoreScreen;
 
         
         private void Awake()                                                                                    
@@ -54,14 +55,6 @@ namespace MyScripts
             }
         }
         
-        // ── Método Start é private e chama um método público
-
-        private void Start()
-        {
-            HideAllScreens();                              // procedimento padrão: esconder todas as telas e mostrar a desejada somente 
-            ShowIntro();                                   // começa na tela de intro do jogo
-        }
-        
         // ── Método interno auxiliar ───────────────────────────────────────────
 
         public void HideAllScreens()                      // garante que todas as telas estejam desativadas
@@ -69,6 +62,7 @@ namespace MyScripts
             gameOverScreen.SetActive(false);
             victoryScreen.SetActive(false);
             introScreen.SetActive(false);
+            // scoreScreen.SetActive(false);
         }
         
         // ── Métodos públicos que qualquer script pode chamar
@@ -90,6 +84,11 @@ namespace MyScripts
             HideAllScreens();
             victoryScreen.SetActive(true);
         }
+
+        // public void ShowScore()
+        // {
+        //     scoreScreen.SetActive(true);
+        // }
 
     }
 }

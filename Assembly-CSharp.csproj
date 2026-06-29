@@ -54,6 +54,7 @@
     <Compile Include="Assets/MyScripts/Gaveta.cs" />
     <Compile Include="Assets/MyScripts/UI_Manager.cs" />
     <Compile Include="Assets/MyScripts/DarkChave.cs" />
+    <Compile Include="Assets/MyScripts/ScoreManager.cs" />
     <Compile Include="Assets/MyScripts/NewTestCube.cs" />
     <Compile Include="Assets/MyScripts/NewTestCubeInherit.cs" />
     <Compile Include="Assets/MyScripts/Porta.cs" />

@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5616955906304079155, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: scoreScreen
+      value: 
+      objectReference: {fileID: 2146074128}
     - target: {fileID: 6000078230481445657, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.39271
@@ -353,7 +357,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.017551133, g: 0.06397649, b: 0.5042869, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -453,6 +457,11 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &2146074128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2574301528738634489, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 849009775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
