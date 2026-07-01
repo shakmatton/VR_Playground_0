@@ -191,4 +191,4 @@ MonoBehaviour:
   - nave
   - asteroid
   autoDestroy: 1
-  triggerGameOver: 0
+  spaceBullet: {fileID: 6054952070969555925, guid: cb3c13e6e3c88e3f189cabdaf683b93e, type: 3}

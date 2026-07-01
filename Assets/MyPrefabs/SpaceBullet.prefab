@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6054952070969555925}
   m_Layer: 0
   m_Name: SpaceBullet
-  m_TagString: Untagged
+  m_TagString: spacebullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   - asteroid
   - nave
   autoDestroy: 1
+  spaceBullet: {fileID: 6054952070969555925}
 --- !u!114 &6054952070969555925
 MonoBehaviour:
   m_ObjectHideFlags: 0

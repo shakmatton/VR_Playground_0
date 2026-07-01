@@ -13,9 +13,9 @@ namespace MyScripts
         {
             // Método "Tag" usado abaixo. Mas, poderia ter sido usado Layers também (ver matriz de colisões, em Project Settings > Physics > Settings).
             
-            if (other.gameObject.tag == "asteroid")    // Killzone deve "matar" apenas asteroides, em vez de objetos diversos...
+            if (other.gameObject.CompareTag("asteroid"))    // Killzone deve "matar" apenas asteroides, em vez de objetos diversos...
             {
-                Destroy(other.gameObject);             // Destrói o gameObject que entra em contato com o KillZone.
+                Destroy(other.gameObject);                  // Destrói o gameObject que entra em contato com o KillZone.
             }
         }
     }

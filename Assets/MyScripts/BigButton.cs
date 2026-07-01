@@ -26,8 +26,8 @@ public class BigButton : XRSimpleInteractable                             // Nã
         startPosition = transform.localPosition;                         // registra posição inicial do botão na variável startPosition
     } 
     
-    public event Action<Vector3, float> OnButtonPushAnimation;           // criando evento delegate para animação (apenas para treinamento)
-    
+    public event Action<Vector3, float> OnButtonPushAnimation;           // criando evento delegate para animação (apenas para treinamento).
+                                                                         // Em CycleAnimation.cs, ver "bigButton.OnButtonPushAnimation += HandleAnimation;".
     
     protected override void OnSelectEntered(SelectEnterEventArgs args)    // "Press G to activate during Play"
     {
@@ -35,7 +35,7 @@ public class BigButton : XRSimpleInteractable                             // Nã
         interactor = args.interactorObject;                               // interactor referencia o objeto detectado nos args da classe mãe
         counter.Increment();                                              // chama o método Increment lá do Counter.cs (o qual, por sua vez, irá disparar um evento)
         
-        OnButtonPushAnimation?.Invoke(startPosition, finalPositionZ);     // disparo do evento delegate (deve ser ouvido e inscrito por método de CycleAnimation)
+        OnButtonPushAnimation?.Invoke(startPosition, finalPositionZ);     // disparo do evento delegate (deve ser ouvido e inscrito por método de CycleAnimation.cs)
     }
     
     protected override void OnSelectExited(SelectExitEventArgs args)

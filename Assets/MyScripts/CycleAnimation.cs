@@ -35,7 +35,7 @@ public class CycleAnimation : MonoBehaviour
     {
         if (!isAnimating) return;                                                   // sem animação, não faz nada
         
-        if (timeElapsed < animDuration)                                  // enquanto acumulador foi menor que a duração total da animação...
+        if (timeElapsed < animDuration)                                             // enquanto acumulador foi menor que a duração total da animação...
         {
             float t = timeElapsed / animDuration;                                   // passo t recebe fração referente à divisão
             t = t * t * (3f - 2f * t);                                              // equação de movimentação "smooth"
