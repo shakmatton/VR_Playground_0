@@ -59,10 +59,10 @@ namespace MyScripts
 
         public void HideAllScreens()                      // garante que todas as telas estejam desativadas
         {
-            gameOverScreen.SetActive(false);
-            victoryScreen.SetActive(false);
-            introScreen.SetActive(false);
-            scoreScreen.SetActive(false);
+            if (gameOverScreen != null) gameOverScreen.SetActive(false);
+            if (victoryScreen != null) victoryScreen.SetActive(false);
+            if (introScreen != null) introScreen.SetActive(false);
+            if (scoreScreen != null) scoreScreen.SetActive(false);
         }
         
         // ── Métodos públicos que qualquer script pode chamar

@@ -709,7 +709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7649097320416861897}
-  - component: {fileID: 4016404017069647521}
+  - component: {fileID: 944315961339147337}
   m_Layer: 0
   m_Name: UI_Score
   m_TagString: Untagged
@@ -738,7 +738,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4016404017069647521
+--- !u!114 &944315961339147337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -747,11 +747,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2574301528738634489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8b1806f69ffae04af21990760fce93, type: 3}
+  m_Script: {fileID: 11500000, guid: 696293b4047599006b0c23460907fee5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  spaceBullet: {fileID: 6054952070969555925, guid: cb3c13e6e3c88e3f189cabdaf683b93e, type: 3}
-  scoreText: {fileID: 7262779746084845394}
+  m_EditorClassIdentifier: Assembly-CSharp::MyScripts.UI_ScoreDisplay
+  scoreText: {fileID: 5946008812123371684}
 --- !u!1 &4405904656599998559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,4 +2207,4 @@ MonoBehaviour:
   gameOverScreen: {fileID: 7554145952802874326}
   victoryScreen: {fileID: 7838688409176560936}
   introScreen: {fileID: 7357708412160932826}
-  scoreScreen: {fileID: 0}
+  scoreScreen: {fileID: 2574301528738634489}

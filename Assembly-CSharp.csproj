@@ -75,6 +75,7 @@
     <Compile Include="Assets/MyScripts/BigButton.cs" />
     <Compile Include="Assets/MyScripts/SpaceshipController.cs" />
     <Compile Include="Assets/MyScripts/SprintModifier.cs" />
+    <Compile Include="Assets/MyScripts/UI_ScoreDisplay.cs" />
     <Compile Include="Assets/MyScripts/SpaceBullet.cs" />
     <Compile Include="Assets/MyScripts/AsteroidKillzone.cs" />
     <Compile Include="Assets/MyScripts/Spawner.cs" />

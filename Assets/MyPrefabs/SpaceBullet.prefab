@@ -164,7 +164,6 @@ MonoBehaviour:
   - asteroid
   - nave
   autoDestroy: 1
-  spaceBullet: {fileID: 6054952070969555925}
 --- !u!114 &6054952070969555925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +178,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bulletSpeed: 10
   timeLimit: 3
+  prefabDestroyer: {fileID: 1652787783973600846}
