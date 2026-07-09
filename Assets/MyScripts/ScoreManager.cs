@@ -23,25 +23,27 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+            // DontDestroyOnLoad(gameObject);       // ao contrário de UI_Manager, não é preciso preservar a instância do Singleton ScoreManager.cs 
+        }                                           // queremos que ela "viva" somente ao longo da cena do jogo (em vez de sobreviver e existir entre todas as cenas)
+        
     }
 
-    public void HandleBulletScore()
+    // private void Start()                            // fazer o UI_Manager.Instance.Subscribed ser chamado no UI_Display.cs depois do Awake() do ScoreManager 
+    // {
+    //     UI_Manager.Instance.Subscribe();
+    // }
+
+    public void AddScore()
     {
         // TODO: se GameOver, resetar jogo e resetar score antes de somar ponto novamente.
 
         _acumulador++;
         OnScoreChanged?.Invoke(_acumulador);          // avisa a UI (UI_ScoreDisplay) que o score mudou
 
-        // if (_acumulador >= 3)
-        // {
-        //     UI_Manager.Instance.ShowVictory();
-        // }
+        if (_acumulador >= 3)
+        {
+            UI_Manager.Instance.ShowVictory();
+        }
     }
 
     public void ResetScore()
@@ -100,7 +102,7 @@ public class ScoreManager : MonoBehaviour
         // scorePoints = GetComponent<TextMeshProUGUI>();
     }
 
-    public void HandleBulletScore()
+    public void AddScore()
     {
                 // escrever lógica para a situação abaixo:
                 // if GameOver, reset game e reset score...

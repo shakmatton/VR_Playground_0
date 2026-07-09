@@ -16,8 +16,8 @@ namespace MyScripts
         
         private void OnTriggerEnter(Collider other)         // usar isso em vez de OnCollisionTrigger, pois este último é indicado para objetos com interação física 
         {
-            
             // Debug.Log($"Trigger disparado: {gameObject.name} colidiu com {other.gameObject.name} (tag: {other.tag})");
+            
             
             if (tagsToDestroy.Contains(other.tag))          // se a tag do objeto que colide pertence ao conjunto de tags "tagsToDestroy"...
             {   

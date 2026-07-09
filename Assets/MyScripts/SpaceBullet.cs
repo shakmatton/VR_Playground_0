@@ -2,11 +2,13 @@ using System;
 using MyScripts;
 using UnityEngine;
 
-// Colisão do PrefabDestroyer ativa método OnBulletCollide do SpaceBullet.cs. 
-// Esse método, por sua vez, chama diretamente o método HandleBulletScore do Singleton ScoreManager.cs.
+/* Spacebullet -> atire com Ctrl Direito.
 
-// As funções do SpaceBullet são: fazer a movimentação do tiro da nave na tela; e avisar o ScoreManager.cs sobre a colisão ocorrida no PrefabDestroyer.cs.
-// Dentro do prefab do SpaceBullet, há 2 scripts nele "empacotados" (PrefabDestroyer.cs e SpaceBullet.cs). Por isso, eles podem conversar entre si diretamente.
+   Colisão do PrefabDestroyer ativa método OnBulletCollide do SpaceBullet.cs. 
+   Esse método, por sua vez, chama diretamente o método AddScore do Singleton ScoreManager.cs.
+
+   As funções do SpaceBullet são: fazer a movimentação do tiro da nave na tela; e avisar o ScoreManager.cs sobre a colisão ocorrida no PrefabDestroyer.cs.
+   Dentro do prefab do SpaceBullet, há 2 scripts nele "empacotados" (PrefabDestroyer.cs e SpaceBullet.cs). Por isso, eles podem conversar entre si diretamente. */
 
 public class SpaceBullet : MonoBehaviour
 {
@@ -16,23 +18,20 @@ public class SpaceBullet : MonoBehaviour
     
     private void Awake()
     {
-        // Fallback de segurança: se o campo não foi arrastado no Inspector,
-        // tenta pegar o componente automaticamente (funciona pois os dois scripts
-        // ficam no mesmo GameObject dentro do prefab).
+        // Fallback de segurança: se o campo não foi arrastado no Inspector, tenta pegar o componente automaticamente.
+        // (funciona pois os dois scripts ficam no mesmo GameObject dentro do prefab).
+        
         if (prefabDestroyer == null)
         {
             prefabDestroyer = GetComponent<PrefabDestroyer>();
-        }
-
-        if (prefabDestroyer == null)
-        {
-            Debug.LogError($"SpaceBullet em '{gameObject.name}': PrefabDestroyer não encontrado nem arrastado no Inspector nem presente no mesmo GameObject.");
+            // Debug.LogError($"SpaceBullet em '{gameObject.name}': PrefabDestroyer não encontrado nem arrastado no Inspector nem presente no mesmo GameObject.");
         }
     }
 
     private void Start()
     {
         prefabDestroyer.OnCollide += OnBulletCollide;                           // inscrição de método do prefab SpaceBullet no evento OnCollide de PrefabDestroyer.cs
+                                                                                // ler assim: "evento OnCollide aponta para método OnBulletCollide (definido abaixo no script)"
         
         Destroy(gameObject, timeLimit);                                         // certo tempo após o início da vida do tiro, ele é destruído 
                                                                                 // não confundir com o método do ciclo de vida do Unity chamado "OnDestroy()" 
@@ -41,7 +40,7 @@ public class SpaceBullet : MonoBehaviour
 
     public void OnBulletCollide()                                               // método que se inscreve no OnCollide do prefabDestroyer
     {
-        ScoreManager.Instance.HandleBulletScore();                              // chama instância do Singleton ScoreManger.cs aqui
+        ScoreManager.Instance.AddScore();                                       // chama instância do Singleton ScoreManger.cs aqui
     }
     
     
@@ -52,7 +51,7 @@ public class SpaceBullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        prefabDestroyer.OnCollide -= OnBulletCollide;
+        prefabDestroyer.OnCollide -= OnBulletCollide;                           // ler assim: "evento OnCollide desreferencia método OnBulletCollide (definido acima no script)"
     }
 }
 
@@ -64,7 +63,7 @@ using MyScripts;
 using UnityEngine;
 
 // Colisão do PrefabDestroyer ativa método OnBulletCollide do SpaceBullet.cs. 
-// Esse método, por sua vez, chama diretamente o método HandleBulletScore do Singleton ScoreManager.cs.
+// Esse método, por sua vez, chama diretamente o método AddScore do Singleton ScoreManager.cs.
 
 // As funções do SpaceBullet são: fazer a movimentação do tiro da nave na tela; e avisar o ScoreManager.cs sobre a colisão ocorrida no PrefabDestroyer.cs.
 // Dentro do prefab do SpaceBullet, há 2 scripts nele "empacotados" (PrefabDestroyer.cs e SpaceBullet.cs). Por isso, eles podem conversar entre si diretamente.
@@ -86,7 +85,7 @@ public class SpaceBullet : MonoBehaviour
 
     public void OnBulletCollide()                                               // método que se inscreve no OnCollide do prefabDestroyer
     {
-        ScoreManager.Instance.HandleBulletScore();                              // chama instância do Singleton ScoreManger.cs aqui
+        ScoreManager.Instance.AddScore();                              // chama instância do Singleton ScoreManger.cs aqui
     }
     
     

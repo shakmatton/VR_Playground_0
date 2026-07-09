@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2823290943301670522, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4016404017069647521, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: scoreText
       value: 
@@ -206,6 +210,10 @@ PrefabInstance:
     - target: {fileID: 8753458697433251408, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_Name
       value: UI_Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023590503824273210, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

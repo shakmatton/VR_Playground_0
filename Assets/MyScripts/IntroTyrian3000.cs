@@ -17,8 +17,9 @@ namespace MyScripts
     
         void PlayGame()                                     
         {
-            UI_Manager.Instance.HideAllScreens();           // método PlayGame acessa o método público HideAllScreens, limpando todas as telas de UI do jogo. 
+            // UI_Manager.Instance.HideAllScreens();        // método PlayGame acessa o método público HideAllScreens, limpando todas as telas de UI do jogo. 
             SceneManager.LoadScene("Tyrian 3000");          // faz o loading da cena principal do jogo
+            UI_Manager.Instance.ShowScore();                // mostra a tela de pontuação (ou seja, o Score, que fica no canto inferior esquerdo)
         }
     }
 }

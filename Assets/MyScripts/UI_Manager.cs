@@ -87,6 +87,7 @@ namespace MyScripts
 
         public void ShowScore()
         {
+            HideAllScreens();
             scoreScreen.SetActive(true);
         }
 
