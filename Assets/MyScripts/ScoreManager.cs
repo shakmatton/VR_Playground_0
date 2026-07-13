@@ -25,7 +25,6 @@ public class ScoreManager : MonoBehaviour
             Instance = this;
             // DontDestroyOnLoad(gameObject);       // ao contrário de UI_Manager, não é preciso preservar a instância do Singleton ScoreManager.cs 
         }                                           // queremos que ela "viva" somente ao longo da cena do jogo (em vez de sobreviver e existir entre todas as cenas)
-        
     }
 
     // private void Start()                            // fazer o UI_Manager.Instance.Subscribed ser chamado no UI_Display.cs depois do Awake() do ScoreManager 

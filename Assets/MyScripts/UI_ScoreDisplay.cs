@@ -1,51 +1,83 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-
-// TODO: verificar o porquê de funcionar ok na 1ª vez, depois não funcionar direito da 2ª em diante...
+using UnityEngine.SceneManagement;
 
 public class UI_ScoreDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    
 
-    private Coroutine _subscribeRoutine;
-
-    private void OnEnable()
+    private void Start()
     {
-        _subscribeRoutine = StartCoroutine(SubscribeWhenReady());
-    }
-
-    private IEnumerator SubscribeWhenReady()
-    {
-        // espera, quadro a quadro, até o Singleton estar pronto
-        while (ScoreManager.Instance == null)
-        {
-            yield return null;
-        }
-
         ScoreManager.Instance.OnScoreChanged += UpdateScreenScore;
-        UpdateScreenScore(0); // garante que a tela comece mostrando "0"
     }
 
+    
     private void UpdateScreenScore(int newScore)
     {
         scoreText.text = newScore.ToString();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        if (_subscribeRoutine != null)
-        {
-            StopCoroutine(_subscribeRoutine);
-            _subscribeRoutine = null;
-        }
-
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.OnScoreChanged -= UpdateScreenScore;
         }
     }
 }
+
+
+// using System.Collections;
+// using TMPro;
+// using UnityEngine;
+//
+// // TODO: verificar o porquê de funcionar ok na 1ª vez, depois não funcionar direito da 2ª em diante...
+//
+// public class UI_ScoreDisplay : MonoBehaviour
+// {
+//     [SerializeField] private TextMeshProUGUI scoreText;
+//
+//     private Coroutine _subscribeRoutine;
+//
+//     private void OnEnable()
+//     {
+//         _subscribeRoutine = StartCoroutine(SubscribeWhenReady());
+//     }
+//
+//     private IEnumerator SubscribeWhenReady()
+//     {
+//         // espera, quadro a quadro, até o Singleton estar pronto
+//         while (ScoreManager.Instance == null)
+//         {
+//             yield return null;
+//         }
+//
+//         ScoreManager.Instance.OnScoreChanged += UpdateScreenScore;
+//         UpdateScreenScore(0); // garante que a tela comece mostrando "0"
+//     }
+//
+//     private void UpdateScreenScore(int newScore)
+//     {
+//         scoreText.text = newScore.ToString();
+//     }
+//
+//     private void OnDisable()
+//     {
+//         if (_subscribeRoutine != null)
+//         {
+//             StopCoroutine(_subscribeRoutine);
+//             _subscribeRoutine = null;
+//         }
+//
+//         if (ScoreManager.Instance != null)
+//         {
+//             ScoreManager.Instance.OnScoreChanged -= UpdateScreenScore;
+//         }
+//     }
+// }
 
 /*
 using System.Collections;

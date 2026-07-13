@@ -111,11 +111,15 @@ namespace MyScripts
         // private void HandleDeath()                          // método que detecta a colisão fatal
         {
             // Acesso ao Singleton diretamente — sem [SerializeField], sem Inspector
+            if (!gameObject.scene.isLoaded)
+            {
+                // Being destroyed because the scene/level is unloading
+                // (or the application is quitting)
+                return;
+            }
             
             UI_Manager.Instance.ShowGameOver();    // Aqui acontece a comunicação com o Singleton: não há referência no Inspector, não há [SerializeField].
             // O script simplesmente pergunta: "classe UI_Manager, onde está sua instância?" — e chama o método nela.
-            
-            Destroy(gameObject);
         }
     }
 }

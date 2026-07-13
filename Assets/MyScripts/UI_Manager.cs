@@ -26,7 +26,6 @@ namespace MyScripts
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject victoryScreen;
         [SerializeField] private GameObject introScreen;
-        [SerializeField] private GameObject scoreScreen;
 
         
         private void Awake()                                                                                    
@@ -62,7 +61,6 @@ namespace MyScripts
             if (gameOverScreen != null) gameOverScreen.SetActive(false);
             if (victoryScreen != null) victoryScreen.SetActive(false);
             if (introScreen != null) introScreen.SetActive(false);
-            if (scoreScreen != null) scoreScreen.SetActive(false);
         }
         
         // ── Métodos públicos que qualquer script pode chamar
@@ -84,12 +82,5 @@ namespace MyScripts
             HideAllScreens();
             victoryScreen.SetActive(true);
         }
-
-        public void ShowScore()
-        {
-            HideAllScreens();
-            scoreScreen.SetActive(true);
-        }
-
     }
 }
