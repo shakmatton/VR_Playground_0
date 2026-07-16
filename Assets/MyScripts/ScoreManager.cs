@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     // Evento que avisa qualquer UI inscrita (ex: UI_ScoreDisplay) sobre a mudança no score.
     // É esse "Action<int> OnScoreChanged" que faz o papel do "evento ChangeScore" mencionado no comentário original do UI_ScoreDisplay.
     public event Action<int> OnScoreChanged;
-
+    public event Action OnVictory;
     private int _acumulador = 0;
 
     private void Awake()
@@ -35,6 +35,8 @@ public class ScoreManager : MonoBehaviour
         if (_acumulador >= 3)                         // pontuação-limite para ativar a tela de Vitória 
         {
             UI_Manager.Instance.ShowVictory();        // chama tela de Vitória
+            
+            OnVictory?.Invoke();     // dispara evento que será ouvido em NewSpaceshipController (a nave deve sumir da tela no evento de Vitória).
         }
     }
 }

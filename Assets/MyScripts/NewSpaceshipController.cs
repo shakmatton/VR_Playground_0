@@ -71,15 +71,12 @@ namespace MyScripts
             
             shootAction.action.performed += OnShoot;                    // ação que ocorre quando o tiro da nave é dado
 
-            ScoreManager.Instance.OnScoreChanged += HideShipOnVictory;  // método que se inscreve quando nave é ativada na tela
+            ScoreManager.Instance.OnVictory += HideShipOnVictory;       // método que se inscreve quando nave é ativada na tela
         }
 
-        private void HideShipOnVictory(int score)                       // detalhamento do método HideShipOnVictory 
+        private void HideShipOnVictory()                                // detalhamento do método HideShipOnVictory 
         {
-            if (score >= 3)
-            {
-                gameObject.SetActive(false);                            // desativa a nave na tela de Vitória
-            }                                                           // Aqui, gameObject é a nave!
+            gameObject.SetActive(false);                                // desativa a nave na tela de Vitória
         }
 
         private void OnShoot(InputAction.CallbackContext ctx)                               // método que cuida do tiro da nave
@@ -103,7 +100,7 @@ namespace MyScripts
             moveAction.action.canceled  -= OnStop;
             shootAction.action.performed -= OnShoot;
             
-            ScoreManager.Instance.OnScoreChanged -= HideShipOnVictory;  // método que se desinscreve quando nave é desativada na tela
+            ScoreManager.Instance.OnVictory -= HideShipOnVictory;      // método que se desinscreve quando nave é desativada na tela
         }
 
         private void Update()
