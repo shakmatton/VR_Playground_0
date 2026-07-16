@@ -368,6 +368,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.960585, y: 1.7622846, z: 1}
   m_Center: {x: 1.5999355, y: 0.38114232, z: 0}
+--- !u!114 &515135229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6179068051656274200, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &518300980
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +516,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &658670790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5452921966283214584, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &698886499
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +578,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &814269986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9023590503824273210, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &838119382
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +692,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1250580673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2019789580312804165, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1556023491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1122,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631373217}
   m_Mesh: {fileID: -5495902117074765545, guid: 63d38d83d0ae6f5609a656e659449ad3, type: 3}
+--- !u!114 &1708260276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 612432993713299065, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1742306727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2823290943301670522, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+  m_PrefabInstance: {fileID: 2011215560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1819037681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1344,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 901645665286613200, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_Name
+      value: RetryGO Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090351446872951160, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 1742306727}
+    - target: {fileID: 3400487946735379483, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 658670790}
+    - target: {fileID: 3400487946735379483, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 515135229}
+    - target: {fileID: 3400487946735379483, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 1708260276}
+    - target: {fileID: 4211943491726240922, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 658670790}
+    - target: {fileID: 4211943491726240922, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 1250580673}
+    - target: {fileID: 4211943491726240922, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 814269986}
+    - target: {fileID: 4711135654995802339, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810162283786357530, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 658670790}
+    - target: {fileID: 4810162283786357530, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 1250580673}
+    - target: {fileID: 4810162283786357530, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 814269986}
+    - target: {fileID: 5090877983689629137, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_Name
+      value: ReturnVictory Button
+      objectReference: {fileID: 0}
     - target: {fileID: 6000078230481445657, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 206.86633
@@ -1318,6 +1436,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6762784901616133137, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_Name
+      value: RetryVictory Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357708412160932826, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554145952802874326, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624284402439705045, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_Name
+      value: ReturnGO Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7737150411651512796, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 658670790}
+    - target: {fileID: 7737150411651512796, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 1250580673}
+    - target: {fileID: 7737150411651512796, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 1742306727}
+    - target: {fileID: 7838688409176560936, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892050718842619560, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363462980200088512, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 658670790}
+    - target: {fileID: 8363462980200088512, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 515135229}
+    - target: {fileID: 8363462980200088512, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+      propertyPath: playOrRetryButton
+      value: 
+      objectReference: {fileID: 1708260276}
     - target: {fileID: 8753458697433251408, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_Name
       value: UI_Manager

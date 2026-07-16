@@ -27,28 +27,15 @@ public class ScoreManager : MonoBehaviour
         }                                           // queremos que ela "viva" somente ao longo da cena do jogo (em vez de sobreviver e existir entre todas as cenas)
     }
 
-    // private void Start()                            // fazer o UI_Manager.Instance.Subscribed ser chamado no UI_Display.cs depois do Awake() do ScoreManager 
-    // {
-    //     UI_Manager.Instance.Subscribe();
-    // }
-
     public void AddScore()
     {
-        // TODO: se GameOver, resetar jogo e resetar score antes de somar ponto novamente.
+        _acumulador++;                                // "pontuação + 1"
+        OnScoreChanged?.Invoke(_acumulador);          // avisa a UI (UI_ScoreDisplay) e à nave (NewSpaceShipController.cs) que o score mudou
 
-        _acumulador++;
-        OnScoreChanged?.Invoke(_acumulador);          // avisa a UI (UI_ScoreDisplay) que o score mudou
-
-        if (_acumulador >= 3)
+        if (_acumulador >= 3)                         // pontuação-limite para ativar a tela de Vitória 
         {
-            UI_Manager.Instance.ShowVictory();
+            UI_Manager.Instance.ShowVictory();        // chama tela de Vitória
         }
-    }
-
-    public void ResetScore()
-    {
-        _acumulador = 0;
-        OnScoreChanged?.Invoke(_acumulador);
     }
 }
 

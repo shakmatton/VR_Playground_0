@@ -8,19 +8,17 @@ public class UI_ScoreDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     
-
     private void Start()
     {
-        ScoreManager.Instance.OnScoreChanged += UpdateScreenScore;
+        ScoreManager.Instance.OnScoreChanged += UpdateScreenScore;              // atualiza tela de pontuação 
     }
-
     
-    private void UpdateScreenScore(int newScore)
+    private void UpdateScreenScore(int newScore)                                // tela de pontuação atualizada aqui
     {
         scoreText.text = newScore.ToString();
     }
 
-    private void OnDestroy()
+    private void OnDestroy()                                                    // caso a instância do ScoreManager exista, fazer um checkout do método UpdateScreenScore
     {
         if (ScoreManager.Instance != null)
         {
@@ -34,7 +32,7 @@ public class UI_ScoreDisplay : MonoBehaviour
 // using TMPro;
 // using UnityEngine;
 //
-// // TODO: verificar o porquê de funcionar ok na 1ª vez, depois não funcionar direito da 2ª em diante...
+// // verificar o porquê de funcionar ok na 1ª vez, depois não funcionar direito da 2ª em diante...
 //
 // public class UI_ScoreDisplay : MonoBehaviour
 // {

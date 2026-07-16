@@ -127,34 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2574301528738634489, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2823290943301670522, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4016404017069647521, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: scoreText
-      value: 
-      objectReference: {fileID: 1763162445}
-    - target: {fileID: 4016404017069647521, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 1556205111}
-    - target: {fileID: 4016404017069647521, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: scorePoints
-      value: 
-      objectReference: {fileID: 1763162445}
-    - target: {fileID: 4016404017069647521, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: uiScoreManager
-      value: 
-      objectReference: {fileID: 1556205111}
-    - target: {fileID: 5616955906304079155, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: scoreScreen
-      value: 
-      objectReference: {fileID: 2146074128}
     - target: {fileID: 6000078230481445657, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.39271
@@ -195,29 +167,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7357708412160932826, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554145952802874326, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7838688409176560936, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8753458697433251408, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
       propertyPath: m_Name
       value: UI_Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 9023590503824273210, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3152103083618186055, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
@@ -348,28 +303,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &1556205111 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5616955906304079155, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-  m_PrefabInstance: {fileID: 849009775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1b697904fc192686b183d48b3c88a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MyScripts.UIManager
---- !u!114 &1763162445 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5946008812123371684, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-  m_PrefabInstance: {fileID: 849009775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1989419759
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,11 +440,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &2146074128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2574301528738634489, guid: 81cb85cba211968a2a65061f8246a76e, type: 3}
-  m_PrefabInstance: {fileID: 849009775}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
